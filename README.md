@@ -34,7 +34,7 @@ It's a static site with no build step.
 | Spec Sheet for Creative | Sizes, file types, max sizes, copy limits and lead times for each ad unit in the plan |
 | Flighting & Projected Outcomes | Monthly spend per channel with launch and event bursts, projected outcomes by month, and KPIs and outcomes by channel |
 | Buy Details | Every buy in the selected version: buy type, editable rate vs benchmark, budget, delivery, markets and KPI |
-| Spec Sheet & Tagging for Agency | A trafficking row for every line (BOM items, files, ad copy that follows BOM edits, pixel, ad name, UTMs and tracked URL), plus pixel and conversion setup for each channel |
+| Spec & Trafficking Sheet for Agency | A trafficking row for every line (BOM items, files, ad copy that follows BOM edits, pixel, ad name, UTMs and tracked URL), plus pixel and conversion setup for each channel |
 
 Exports: an `.xlsx` for the current version, one `.xlsx` with all versions, a CSV of the current tab, or "Copy table" to paste into Sheets.
 
