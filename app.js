@@ -6,7 +6,7 @@ const BUYUNIT={CPM:'impressions',CPC:'clicks',CPV:'views',CPL:'leads',CPS:'sends
 const UNITS={
  li_image:{platform:'LinkedIn',name:'Single Image Ad',variants:['1.91:1 · 1200×627','1:1 · 1080×1080'],files:'JPG, PNG, GIF (static)',max:'5 MB',length:'—',copy:['Main copy (intro text) ≤150 chars recommended (3,000 max)','Headline ≤70 chars recommended (200 max)','Description ≤100 chars recommended (300 max; shows on LinkedIn Audience Network)','CTA button from LinkedIn list'],notes:'Keep logo and key claim inside the center 80%.',lead:10},
  li_video:{platform:'LinkedIn',name:'Video Ad',variants:['16:9 · 1920×1080','1:1 · 1080×1080','9:16 · 1080×1920'],files:'MP4',max:'200 MB',length:'15–30s recommended (3s–30min)',copy:['Main copy (intro text) ≤150 chars recommended (3,000 max)','Headline ≤70 chars recommended (200 max)','Burned-in captions or .srt file'],notes:'Brand and proof point in the first 3 seconds; most views are muted.',lead:21},
- li_tla:{platform:'LinkedIn',name:'Thought Leader Ad',variants:['Organic member post (image, video or text)'],files:'As posted by the member',max:'—',length:'—',copy:['Post up to 3,000 chars','Sponsorship approval from the member'],notes:'Post cannot be edited once promoted. Use exec and security-practitioner creator posts.',lead:7},
+ li_tla:{platform:'LinkedIn',name:'Thought Leader Ad',variants:['Organic member post (image, video or text)'],files:'As posted by the member',max:'—',length:'—',copy:['Post up to 3,000 chars','Sponsorship approval from the member'],notes:'Post cannot be edited once promoted. Use exec and Mobile Insiders creator posts.',lead:7},
  li_doc:{platform:'LinkedIn',name:'Document Ad',variants:['PDF, 1:1 or 4:5 pages'],files:'PDF, PPT, DOCX',max:'100 MB · 300 pages',length:'≤10 pages recommended',copy:['Main copy (intro text) ≤150 chars recommended (3,000 max)','Headline ≤70 chars recommended (200 max)'],notes:'Gate after 3–5 preview pages with a Lead Gen Form.',lead:15},
  li_lgf:{platform:'LinkedIn',name:'Lead Gen Form',variants:['Form'],files:'—',max:'—',length:'—',copy:['Headline ≤60 chars','Details ≤160 chars','3–4 questions recommended (12 max)','Privacy policy URL, thank-you message ≤300 chars'],notes:'Sync to CRM / MAP before launch.',lead:5},
  li_conv:{platform:'LinkedIn',name:'Conversation Ad',variants:['Message flow','Banner 300×250 (desktop, optional)'],files:'JPG, PNG',max:'2 MB banner',length:'—',copy:['Opening message ≤500 chars recommended (8,000 max)','Up to 5 CTA buttons ≤25 chars each','Sender: real person with profile photo'],notes:'Map each button to a branch before trafficking.',lead:10},
@@ -19,6 +19,7 @@ const UNITS={
  meta_feed_vid:{platform:'Meta',name:'Feed video ad',covers:'Facebook Feed, Instagram Feed, in-stream',variants:['4:5 · 1080×1350','1:1 · 1080×1080'],files:'MP4, MOV',max:'4 GB',length:'≤15s recommended (1s–241 min)',copy:['Primary text ≤125 chars recommended','Headline ≤40 chars recommended','Captions on (most views are muted)'],notes:'Product or proof point in the first 3 seconds.',lead:14},
  meta_reels:{platform:'Meta',name:'Reels & Stories video',covers:'Facebook Reels, Instagram Reels, Facebook Stories, Instagram Stories',variants:['9:16 · 1080×1920'],files:'MP4, MOV',max:'4 GB',length:'≤15s recommended (Reels ≤90s, Stories ≤60s per card)',copy:['Primary text ≤72 chars shown','Keep the top 14% and bottom 35% clear of text (UI overlay)'],notes:'Shoot vertical; sound on with captions.',lead:14},
  meta_lgf:{platform:'Meta',name:'Instant Form (lead ad)',covers:'Facebook and Instagram lead ads',variants:['Form'],files:'—',max:'—',length:'—',copy:['Intro headline ≤60 chars','3–4 questions recommended (15 max)','Privacy policy URL, thank-you screen'],notes:'Sync to CRM / MAP before launch; use "Higher intent" form type for B2B.',lead:5},
+ ctv_spot:{platform:'Connected TV',name:'CTV spot (streaming apps)',variants:['16:9 · 1920×1080'],files:'MP4 (H.264), 15s or 30s, broadcast-safe audio',max:'—',length:'15s or 30s; non-skippable',copy:['No clickable copy: message, logo and URL on screen','End card with URL or QR code for at least 3 seconds'],notes:'Built for the living room: sound on, no click. Measure with site-visit and branded search lift.',lead:21},
  yt_instream:{platform:'YouTube',name:'Skippable In-stream',variants:['16:9 · 1920×1080'],files:'Upload to YouTube (MP4/MOV)',max:'—',length:'15–30s recommended; skippable after 5s',copy:['Headline ≤40 chars (shown in-stream)','Long headline ≤90 chars (in-feed placements)','Description ≤90 chars','Companion banner auto-generated'],notes:'Logo and message inside the first 5 seconds.',lead:21},
  yt_shorts:{platform:'YouTube',name:'Shorts',variants:['9:16 · 1080×1920'],files:'Upload to YouTube',max:'—',length:'15–30s recommended (60s max)',copy:['Headline ≤40 chars'],notes:'Keep text clear of the bottom 20% and right edge (UI overlay).',lead:14},
  nl_sponsor:{platform:'Publisher',name:'Newsletter sponsorship',variants:['Hero image 600×300','Logo (PNG, transparent)'],files:'PNG, JPG',max:'Per media kit',length:'—',copy:['Headline ≤60 chars','Body 50–75 words','1 CTA with tracked URL'],notes:'Specs vary by publisher. Confirm against the media kit.',lead:10,verify:true},
@@ -50,20 +51,21 @@ const FORMATS=[
 const FMTNAME=Object.fromEntries(FORMATS.map(f=>[f.id,f.name]));
 // creative units grouped by platform for the inputs panel and the spec sheet
 const UNIT_GROUPS=[['Search',['gs_rsa','gs_ext','bd_search','nv_search']],['Display & programmatic',['iab_display','native_display','nv_gfa']],['LinkedIn',['li_image','li_video','li_doc','li_lgf','li_conv','li_tla']],
- ['Meta',['meta_feed_img','meta_feed_vid','meta_reels','meta_lgf']],['X',['x_image','x_video']],['Reddit',['rd_image']],['YouTube',['yt_instream','yt_shorts']],['WeChat',['wc_moments','wc_oa','wc_channels']],
+ ['Meta',['meta_feed_img','meta_feed_vid','meta_reels','meta_lgf']],['X',['x_image','x_video']],['Reddit',['rd_image']],['YouTube',['yt_instream','yt_shorts']],['Connected TV',['ctv_spot']],['WeChat',['wc_moments','wc_oa','wc_channels']],
  ['Publishers & newsletters',['nl_sponsor','native_article']],['Creators & podcasts',['creator_post','podcast']],['Events',['event_pkg']]];
 const UNIT_GROUP=Object.fromEntries(UNIT_GROUPS.flatMap(([g,us])=>us.map(u=>[u,g])));
 const specSig=u=>{const U=UNITS[u];return [U.variants.join('|'),U.files,U.max,U.length,U.copy.join('|')].join('#')};
 const UNIT_META={li_image:['static','paid_social'],li_video:['video','paid_social'],li_tla:['social_post','paid_social'],li_doc:['document','paid_social'],li_lgf:['messaging','paid_social'],li_conv:['messaging','paid_messaging'],
- gs_rsa:['text','cpc'],gs_ext:['text','cpc'],meta_feed_img:['static','paid_social'],meta_feed_vid:['video','paid_social'],meta_reels:['video','paid_social'],meta_lgf:['messaging','paid_social'],x_image:['static','paid_social'],x_video:['video','paid_social'],rd_image:['static','paid_social'],yt_instream:['video','paid_video'],yt_shorts:['video','paid_video'],
+ gs_rsa:['text','cpc'],gs_ext:['text','cpc'],meta_feed_img:['static','paid_social'],meta_feed_vid:['video','paid_social'],meta_reels:['video','paid_social'],meta_lgf:['messaging','paid_social'],x_image:['static','paid_social'],x_video:['video','paid_social'],rd_image:['static','paid_social'],yt_instream:['video','paid_video'],ctv_spot:['video','ctv'],yt_shorts:['video','paid_video'],
  nl_sponsor:['article','newsletter'],iab_display:['display','display'],native_display:['static','native'],native_article:['article','sponsored_content'],podcast:['audio','audio'],creator_post:['social_post','influencer'],
  event_pkg:['event','event'],wc_moments:['static','paid_social'],wc_oa:['display','display'],wc_channels:['video','paid_social'],bd_search:['text','cpc'],nv_search:['text','cpc'],nv_gfa:['static','display']};
 const TAGS={
- linkedin:{tag:'LinkedIn Insight Tag (site-wide) + Conversions API',events:'Page view, sign-up start, account created, report download, webinar registration',click:'li_fat_id (auto) + UTMs; Lead Gen Forms synced to CRM / MAP with hidden field = line ID',extra:'Matched audiences from CRM lists; Insight Tag retargeting audiences'},
- google:{tag:'Google tag (gtag.js) + Google Ads conversion actions; enhanced conversions; GA4 conversion import',events:'Sign-up start, account created, first campaign created',click:'Auto-tagging (gclid) on; ValueTrack {campaignid} {adgroupid} {keyword} in final URL suffix',extra:'Customer Match lists for brand exclusions'},
+ linkedin:{tag:'LinkedIn Insight Tag (site-wide) + Conversions API',events:'Page view, trial start, Community Edition download, report download, webinar registration',click:'li_fat_id (auto) + UTMs; Lead Gen Forms synced to CRM / MAP with hidden field = line ID',extra:'Matched audiences from CRM lists; Insight Tag retargeting audiences'},
+ google:{tag:'Google tag (gtag.js) + Google Ads conversion actions; enhanced conversions; GA4 conversion import',events:'Trial start, free download, first backup job run',click:'Auto-tagging (gclid) on; ValueTrack {campaignid} {adgroupid} {keyword} in final URL suffix',extra:'Customer Match lists for brand exclusions'},
  meta:{tag:'Meta Pixel + Conversions API',events:'PageView, Lead, CompleteRegistration, sign-up start',click:'fbclid (auto) + UTMs; Instant Form leads synced to CRM / MAP',extra:'Custom audiences from CRM lists; exclude active customers'},
  x:{tag:'X Pixel (base code + event codes) + X Conversions API',events:'Page view, sign-up start, account created',click:'twclid (auto) + UTMs',extra:'Website activity audiences'},
  reddit:{tag:'Reddit Pixel + Reddit Conversions API',events:'Page view, sign-up start, lead',click:'rdt_cid (auto) + UTMs',extra:''},
+ ctv:{tag:'DSP pixel (site-wide) + ad-server impression tracking; household IP match from the CTV vendor',events:'Site visit, trial start (view-through)',click:'CTV is view-through only; display clicks carry UTMs',extra:'Verification (e.g., DV or IAS); frequency cap 3–4 a week per household'},
  youtube:{tag:'Google Ads conversion actions (shared Google tag); view-through conversions on',events:'Engaged view, site visit, sign-up start',click:'Auto-tagging (gclid) + UTMs',extra:'Video viewer remarketing lists'},
  trade:{tag:'Ad server (e.g., CM360) third-party display tags + 1×1 impression trackers for newsletters and articles',events:'Floodlight / site activity: landing view, sign-up start',click:'Ad-server click trackers wrapping the UTM URL',extra:'Verification (e.g., DV or IAS) on display; publisher sends delivery screenshots for newsletters'},
  creators:{tag:'Vanity URLs and promo codes per creator / show, redirecting to UTM URLs',events:'Landing view, sign-up start',click:'Unique UTM per creator or episode',extra:'Creator reports post analytics weekly'},
@@ -73,138 +75,134 @@ const TAGS={
  baidu:{tag:'Baidu Tongji (百度统计) + Baidu Ads OCPC conversion tracking',events:'Page view, form submit',click:'bd_vid (auto) + UTMs',extra:'ICP-licensed, China-hosted landing page'},
  naver:{tag:'Naver Premium Log Analysis (wcs script) + Naver Ads conversion tracking',events:'Page view, sign-up start, form submit',click:'Naver auto parameters + UTMs',extra:'PIPA consent on Korean landing page'},
 };
-const UTM_SRC={linkedin:'linkedin',google:'google',meta:'meta',x:'x',reddit:'reddit',youtube:'youtube',trade:'tradepress',creators:'creators',abm:'abm_dsp',events:'events',wechat:'wechat',baidu:'baidu',naver:'naver'};
-const TRADE_PUB={NA:'Dark Reading, CSO Online, SecurityWeek, TechTarget (SearchSecurity, SearchDataBackup), CIO Dive',EMEA:'Infosecurity Magazine, The Register, ComputerWeekly, SC Media UK',CN:'FreeBuf, InfoQ China',JP:'ITmedia Enterprise, Nikkei xTECH, @IT',KR:'Boannews, ZDNet Korea',SEA:'Tech in Asia, CIO & CISO Asia',LATAM:'IT Forum, CISO Advisor'};
+const UTM_SRC={linkedin:'linkedin',google:'google',meta:'meta',x:'x',reddit:'reddit',youtube:'youtube',ctv:'ctv_dsp',trade:'tradepress',creators:'creators',abm:'abm_dsp',events:'events',wechat:'wechat',baidu:'baidu',naver:'naver'};
+const TRADE_PUB={NA:'TechTarget, Network World, Dark Reading, Data Center Knowledge',EMEA:'The Register, ComputerWeekly, Computer Weekly DE, LeMagIT',CN:'CSDN, 51CTO',JP:'ITmedia Enterprise, Nikkei xTECH',KR:'ZDNet Korea, Bloter',SEA:'Computer Weekly ASEAN, Frontier Enterprise',LATAM:'IT Forum, CIO Latam'};
 
 // ini = index of initiative (0 brand / 1 cross-sell / 2 data), min = first tier (0 lean, 1 standard, 2 full)
 const CH=[
  {id:'linkedin',name:'LinkedIn',group:'Paid social',weight:34,markets:{exclude:['CN']},personas:['dm','tech','user'],pl:[
-  {id:'li_si',name:'Sponsored Content · Single Image',units:['li_image'],min:0,share:30,buy:'CPM',rate:55,stage:'Awareness',ini:0,tgt:'Job functions & titles (CISO, CIO, VP Infrastructure, Security Architect, Backup Admin); industries: financial services, healthcare, public sector, retail, manufacturing; company list: named target accounts + lookalikes',kpi:'CTR ≥ 0.5%; eCPM'},
+  {id:'li_si',name:'Sponsored Content · Single Image',units:['li_image'],min:0,share:30,buy:'CPM',rate:55,stage:'Awareness',ini:0,tgt:'Job functions & titles (CIO, CISO, VP IT Infrastructure, IT Director); IT and security skills; company size 100 to 10,000+; target account list + lookalikes',kpi:'CTR ≥ 0.5%; eCPM'},
   {id:'li_vid',name:'Sponsored Content · Video (proof-point testimonials)',units:['li_video'],min:0,share:25,buy:'CPM',rate:60,stage:'Awareness',ini:0,tgt:'Same as single image + video viewer retargeting',kpi:'VTR ≥ 25%; cost per 3s view'},
   {id:'li_tla',name:'Thought Leader Ads (execs + creators)',units:['li_tla'],min:0,share:15,buy:'CPM',rate:40,stage:'Awareness',ini:0,tgt:'Followers of competitor and industry pages; job titles above',kpi:'Engagement ≥ 2%; social share of voice'},
-  {id:'li_doc',name:'Document Ads + Lead Gen (gated report)',units:['li_doc','li_lgf'],min:1,share:20,buy:'CPL',rate:150,stage:'Consideration',ini:0,tgt:'CISO, Security Architect, Backup / Storage Architect at target accounts',kpi:'CPL ≤ $120; form completion ≥ 10%'},
-  {id:'li_rt',name:'Retargeting · existing customers (cross-sell)',units:['li_image'],min:1,share:10,buy:'CPC',rate:9,stage:'Conversion',ini:1,tgt:'Matched audiences: current customer contact lists (data-center-only users); site visitors',kpi:'CTR ≥ 0.8%; cloud / SaaS expansion opportunities'},
-  {id:'li_tech',name:'Sponsored Content · technical webinars & labs (cloud, SaaS, identity)',units:['li_image'],min:1,share:10,buy:'CPC',rate:9,stage:'Consideration',ini:2,tgt:'Cloud Architect, Security Architect, SecOps; current customers not yet protecting cloud or SaaS data',kpi:'Webinar and lab registrations; expansion opportunities'},
-  {id:'li_conv',name:'Conversation Ads · workshop & webinar invites',units:['li_conv'],min:2,share:10,buy:'CPS',rate:0.6,stage:'Consideration',ini:2,tgt:'Tier 1–2 account lists; security and infrastructure leads',kpi:'Open ≥ 50%; click ≥ 3%; registrations'}]},
+  {id:'li_doc',name:'Document Ads + Lead Gen (gated report)',units:['li_doc','li_lgf'],min:1,share:20,buy:'CPL',rate:150,stage:'Consideration',ini:0,tgt:'Backup admins, systems engineers and cloud architects at target accounts',kpi:'CPL ≤ $120; form completion ≥ 10%'},
+  {id:'li_rt',name:'Retargeting · site visitors and unfinished trial signups',units:['li_image'],min:1,share:10,buy:'CPC',rate:9,stage:'Conversion',ini:1,tgt:'Matched audiences: started-but-unfinished trial signups, CRM lists; pricing, download and product page visitors',kpi:'CTR ≥ 0.8%; completed trial signups'},
+  {id:'li_tech',name:'Sponsored Content · hands-on labs & recovery webinars (VMware, Hyper-V, AWS, Azure)',units:['li_image'],min:1,share:10,buy:'CPC',rate:9,stage:'Consideration',ini:2,tgt:'Systems engineers and cloud architects at companies running VMware, Hyper-V, AWS or Azure',kpi:'Webinar registrations; demo requests'},
+  {id:'li_conv',name:'Conversation Ads · workshop & webinar invites',units:['li_conv'],min:2,share:10,buy:'CPS',rate:0.6,stage:'Consideration',ini:2,tgt:'Enterprise target account lists; IT infrastructure and security leads',kpi:'Open ≥ 50%; click ≥ 3%; registrations'}]},
  {id:'google',name:'Google Search',group:'Paid search',weight:12,markets:{exclude:['CN']},personas:['tech','user'],pl:[
   {id:'gs_brand',name:'Brand + product terms',units:['gs_rsa','gs_ext'],min:0,share:35,buy:'CPC',rate:4,stage:'Conversion',ini:1,tgt:'Exact / phrase: brand, product and feature names',kpi:'Impression share ≥ 90%; sign-up CVR'},
-  {id:'gs_cat',name:'Category terms (ransomware recovery, data security)',units:['gs_rsa','gs_ext'],min:0,share:45,buy:'CPC',rate:9,stage:'Consideration',ini:0,tgt:'Phrase / broad + smart bidding: “ransomware recovery”, “immutable backup”, “cyber recovery”, “data security posture management”',kpi:'CPC ≤ $9; CTR ≥ 4%'},
+  {id:'gs_cat',name:'Category terms (backup software, ransomware recovery)',units:['gs_rsa','gs_ext'],min:0,share:45,buy:'CPC',rate:9,stage:'Consideration',ini:0,tgt:'Phrase / broad + smart bidding: “backup software”, “ransomware recovery”, “Microsoft 365 backup”, “VM backup”',kpi:'CPC ≤ $9; CTR ≥ 4%'},
   {id:'gs_comp',name:'Competitor conquest',units:['gs_rsa'],min:2,share:20,buy:'CPC',rate:12,stage:'Consideration',ini:0,tgt:'Competitor brand + “alternative” terms (no trademark in ad copy)',kpi:'CTR ≥ 3%; assisted sign-ups'}]},
  {id:'meta',name:'Meta (Facebook + Instagram)',group:'Paid social',weight:8,markets:{exclude:['CN']},personas:['user','tech'],pl:[
-  {id:'mt_feed',name:'Feed ads · image (Facebook + Instagram)',units:['meta_feed_img'],min:0,share:45,buy:'CPM',rate:12,stage:'Awareness',ini:0,tgt:'Interests and job titles (marketing, advertising, growth); lookalikes of customer lists',kpi:'CTR ≥ 0.6%; CPM ≤ $12'},
+  {id:'mt_feed',name:'Feed ads · image (Facebook + Instagram)',units:['meta_feed_img'],min:0,share:45,buy:'CPM',rate:12,stage:'Awareness',ini:0,tgt:'Interests and job titles (IT administration, cybersecurity, cloud computing, MSPs); lookalikes of customer lists',kpi:'CTR ≥ 0.6%; CPM ≤ $12'},
   {id:'mt_vid',name:'Reels, Stories & feed video',units:['meta_reels','meta_feed_vid'],min:1,share:35,buy:'CPM',rate:10,stage:'Awareness',ini:0,tgt:'Same as feed + video viewer retargeting',kpi:'ThruPlay rate ≥ 20%; cost per ThruPlay'},
   {id:'mt_lead',name:'Lead ads · Instant Form (gated report)',units:['meta_feed_img','meta_lgf'],min:2,share:20,buy:'CPL',rate:60,stage:'Consideration',ini:0,tgt:'Lookalikes of SQLs; site and video retargeting',kpi:'CPL ≤ $60; SQL rate'}]},
  {id:'x',name:'X (Twitter)',group:'Paid social',weight:7,markets:{exclude:['CN']},boost:{JP:2.5},personas:['tech','user'],pl:[
-  {id:'x_img',name:'Promoted posts · image',units:['x_image'],min:1,share:50,buy:'CPM',rate:9,stage:'Awareness',ini:0,tgt:'Follower lookalikes of security and infrastructure thought leaders; keywords',kpi:'Engagement ≥ 1%'},
+  {id:'x_img',name:'Promoted posts · image',units:['x_image'],min:1,share:50,buy:'CPM',rate:9,stage:'Awareness',ini:0,tgt:'Follower lookalikes of sysadmin, cloud and security voices; keywords',kpi:'Engagement ≥ 1%'},
   {id:'x_vid',name:'Promoted video · proof-point clips',units:['x_video'],min:1,share:50,buy:'CPM',rate:12,stage:'Awareness',ini:0,tgt:'Same as image + conference hashtags',kpi:'VTR ≥ 20%'}]},
  {id:'reddit',name:'Reddit',group:'Paid social',weight:3,markets:{exclude:['CN']},boost:{JP:0.5,KR:0.3,SEA:0.6,LATAM:0.6},personas:['user'],pl:[
-  {id:'rd_img',name:'Promoted posts · security & sysadmin communities',units:['rd_image'],min:2,share:100,buy:'CPM',rate:6,stage:'Consideration',ini:2,tgt:'Communities: r/sysadmin, r/cybersecurity, r/netsec, r/ITManagers',kpi:'CTR ≥ 0.4%; comment sentiment'}]},
+  {id:'rd_img',name:'Promoted posts · sysadmin & homelab communities',units:['rd_image'],min:2,share:100,buy:'CPM',rate:6,stage:'Consideration',ini:2,tgt:'Communities: r/sysadmin, r/msp, r/homelab, r/vmware, r/cybersecurity',kpi:'CTR ≥ 0.4%; comment sentiment'}]},
  {id:'youtube',name:'YouTube',group:'Online video',weight:9,markets:{exclude:['CN']},personas:['dm','tech','user'],pl:[
-  {id:'yt_in',name:'Skippable in-stream · testimonial series',units:['yt_instream'],min:1,share:70,buy:'CPV',rate:0.05,stage:'Awareness',ini:0,tgt:'Custom segments: ransomware and backup search terms, competitor channel viewers; customer match',kpi:'VTR ≥ 25%; CPV ≤ $0.06'},
+  {id:'yt_in',name:'Skippable in-stream · testimonial series',units:['yt_instream'],min:1,share:70,buy:'CPV',rate:0.05,stage:'Awareness',ini:0,tgt:'Custom segments: backup and ransomware recovery search terms, competitor channel viewers; customer match',kpi:'VTR ≥ 25%; CPV ≤ $0.06'},
   {id:'yt_sh',name:'Shorts · 15s cut-downs',units:['yt_shorts'],min:2,share:30,buy:'CPM',rate:8,stage:'Awareness',ini:0,tgt:'Same custom segments',kpi:'View rate; earned subs'}]},
- {id:'trade',name:'Trade & endemic press',group:'Trade & endemic',weight:13,markets:'all',personas:['dm','tech'],pub:m=>TRADE_PUB[m.id]||'Local security / IT trades',pl:[
-  {id:'tr_nl',name:'Newsletter sponsorship',units:['nl_sponsor'],min:0,share:40,buy:'Flat',rate:4500,unit:'sends',stage:'Consideration',ini:0,tgt:'Publisher subscriber base (CISOs, IT and security leaders)',kpi:'CTR ≥ 1.5%'},
-  {id:'tr_disp',name:'Run-of-site display (IAB)',units:['iab_display'],min:1,share:35,buy:'CPM',rate:30,stage:'Awareness',ini:0,tgt:'Run of site, security and data protection sections',kpi:'Viewability ≥ 70%; CTR ≥ 0.15%'},
+ {id:'ctv',name:'Connected TV & programmatic',group:'Programmatic',weight:8,markets:{exclude:['CN']},personas:['dm','user'],pub:()=>'DSP (e.g., The Trade Desk or DV360) · CTV apps',pl:[
+  {id:'ctv_s',name:'CTV · 15s / 30s spots on streaming apps',units:['ctv_spot'],min:1,share:60,buy:'CPM',rate:35,stage:'Awareness',ini:0,tgt:'B2B decision-maker data segments (firmographics); household IP match to target accounts',kpi:'Completion rate ≥ 90%; site-visit lift'},
+  {id:'ctv_p',name:'Programmatic prospecting · display & online video',units:['iab_display'],min:0,share:40,buy:'CPM',rate:12,stage:'Awareness',ini:0,tgt:'Contextual IT, cloud and security content; B2B data segments; lookalikes of customers',kpi:'Viewability ≥ 70%; site-visit lift'}]},
+ {id:'trade',name:'Trade & endemic press',group:'Trade & endemic',weight:13,markets:'all',personas:['dm','tech'],pub:m=>TRADE_PUB[m.id]||'Local IT and security trades',pl:[
+  {id:'tr_nl',name:'Newsletter sponsorship',units:['nl_sponsor'],min:0,share:40,buy:'Flat',rate:4500,unit:'sends',stage:'Consideration',ini:0,tgt:'Publisher subscriber base (IT leaders, infrastructure and security pros)',kpi:'CTR ≥ 1.5%'},
+  {id:'tr_disp',name:'Run-of-site display (IAB)',units:['iab_display'],min:1,share:35,buy:'CPM',rate:30,stage:'Awareness',ini:0,tgt:'Run of site, storage, data center, cloud and security sections',kpi:'Viewability ≥ 70%; CTR ≥ 0.15%'},
   {id:'tr_nat',name:'Sponsored article · customer proof point',units:['native_article'],min:2,share:25,buy:'Flat',rate:15000,unit:'articles',stage:'Consideration',ini:0,tgt:'Publisher audience + social amplification',kpi:'Time on page; referral sign-ups'}]},
- {id:'creators',name:'Newsletters, podcasts & creators',group:'Trade & endemic',weight:6,markets:{only:['NA','EMEA']},personas:['dm','tech'],pub:()=>'Security newsletters, podcasts and practitioner creators',pl:[
+ {id:'creators',name:'Newsletters, podcasts & creators',group:'Trade & endemic',weight:6,markets:{only:['NA','EMEA']},personas:['dm','tech'],pub:()=>'IT, sysadmin and security newsletters, podcasts and creators',pl:[
   {id:'cr_nl',name:'Specialist newsletter sponsorship',units:['nl_sponsor'],min:1,share:50,buy:'Flat',rate:3500,unit:'sends',stage:'Consideration',ini:0,tgt:'Subscriber base',kpi:'CTR ≥ 2%'},
   {id:'cr_inf',name:'Paid creator posts (LinkedIn / X)',units:['creator_post'],min:1,share:20,buy:'Flat',rate:2500,unit:'posts',stage:'Awareness',ini:0,tgt:'Creator follower base',kpi:'Mentions, shares, comments; social SOV'},
-  {id:'cr_pod',name:'Podcast host-read',units:['podcast'],min:2,share:30,buy:'Flat',rate:6000,unit:'episodes',stage:'Awareness',ini:0,tgt:'Listener base (CISOs, security and IT leaders)',kpi:'Vanity URL visits'}]},
+  {id:'cr_pod',name:'Podcast host-read',units:['podcast'],min:2,share:30,buy:'Flat',rate:6000,unit:'episodes',stage:'Awareness',ini:0,tgt:'Listener base (IT leaders, sysadmins, security pros)',kpi:'Vanity URL visits'}]},
  {id:'abm',name:'ABM programmatic',group:'Programmatic',weight:8,markets:{exclude:['CN']},personas:['dm','tech'],pub:()=>'ABM DSP (e.g., Demandbase, 6sense)',pl:[
-  {id:'abm_d',name:'Account-based display · target account list',units:['iab_display','native_display'],min:1,share:70,buy:'CPM',rate:28,stage:'Consideration',ini:0,tgt:'Tier 1–3 named target accounts; buying-committee roles (security + infrastructure)',kpi:'Account reach ≥ 60%; engaged accounts'},
+  {id:'abm_d',name:'Account-based display · target account list',units:['iab_display','native_display'],min:1,share:70,buy:'CPM',rate:28,stage:'Consideration',ini:0,tgt:'Enterprise target accounts (1,000+ employees); buying-committee roles (CIO, CISO, infrastructure)',kpi:'Account reach ≥ 60%; engaged accounts'},
   {id:'abm_rt',name:'Site retargeting · product, pricing & docs visitors',units:['iab_display'],min:1,share:30,buy:'CPM',rate:12,stage:'Conversion',ini:1,tgt:'Site visitors (30-day), excluding active customers of that format',kpi:'Return-visit rate; sign-ups'}]},
  {id:'events',name:'Event amplification',group:'Events',weight:6,markets:'all',personas:['dm'],burst:'events',pub:()=>'Event organizers (per moment)',pl:[
   {id:'ev_pkg',name:'Sponsor digital package (app, attendee email)',units:['event_pkg'],min:1,share:60,buy:'Flat',rate:12000,unit:'events',stage:'Consideration',ini:0,tgt:'Registered attendees',kpi:'Meetings booked; booth scans'},
   {id:'ev_soc',name:'Geo-targeted paid social · meeting booking',units:m=>m.id==='CN'?['wc_moments']:['li_image'],min:1,share:40,buy:'CPM',rate:45,stage:'Consideration',ini:0,tgt:'Venue geo-fence + attendee job titles, 2 weeks pre-show',kpi:'Meetings booked; CTR ≥ 0.6%'}]},
  {id:'wechat',name:'WeChat',group:'Regional platforms',weight:14,markets:{only:['CN']},personas:['dm','tech','user'],pub:()=>'Tencent Ads',pl:[
-  {id:'wc_m',name:'Moments ads',units:['wc_moments'],min:0,share:60,buy:'CPM',rate:15,stage:'Awareness',ini:0,tgt:'Industry & interest: enterprise IT, cybersecurity, cloud; lookalikes of target account list',kpi:'CTR ≥ 0.8%; follows'},
-  {id:'wc_o',name:'Official Account article ads',units:['wc_oa'],min:1,share:25,buy:'CPC',rate:1.5,stage:'Consideration',ini:0,tgt:'Security / enterprise IT official accounts',kpi:'CPC; account follows'},
+  {id:'wc_m',name:'Moments ads',units:['wc_moments'],min:0,share:60,buy:'CPM',rate:15,stage:'Awareness',ini:0,tgt:'Industry & interest: IT, cloud, cybersecurity; lookalikes of customer list',kpi:'CTR ≥ 0.8%; follows'},
+  {id:'wc_o',name:'Official Account article ads',units:['wc_oa'],min:1,share:25,buy:'CPC',rate:1.5,stage:'Consideration',ini:0,tgt:'IT and technology official accounts',kpi:'CPC; account follows'},
   {id:'wc_c',name:'Channels video',units:['wc_channels'],min:2,share:15,buy:'CPM',rate:12,stage:'Awareness',ini:0,tgt:'Same as Moments',kpi:'Completion rate'}]},
  {id:'baidu',name:'Baidu Search',group:'Regional platforms',weight:8,markets:{only:['CN']},personas:['tech','user'],pub:()=>'Baidu',pl:[
-  {id:'bd_s',name:'Brand + category search',units:['bd_search'],min:0,share:100,buy:'CPC',rate:2.5,stage:'Consideration',ini:1,tgt:'Brand, product and category terms in Chinese',kpi:'CTR ≥ 3%; leads'}]},
+  {id:'bd_s',name:'Brand + category search',units:['bd_search'],min:0,share:100,buy:'CPC',rate:2.5,stage:'Consideration',ini:1,tgt:'Brand, product and data backup terms in Chinese',kpi:'CTR ≥ 3%; leads'}]},
  {id:'naver',name:'Naver',group:'Regional platforms',weight:8,markets:{only:['KR']},personas:['tech','user'],pub:()=>'Naver',pl:[
-  {id:'nv_s',name:'PowerLink search',units:['nv_search'],min:0,share:70,buy:'CPC',rate:1.8,stage:'Consideration',ini:1,tgt:'Brand, product and category terms in Korean',kpi:'CTR ≥ 3%'},
-  {id:'nv_g',name:'GFA feed & display',units:['nv_gfa'],min:1,share:30,buy:'CPM',rate:6,stage:'Awareness',ini:0,tgt:'Interest: IT, security, business software',kpi:'CTR ≥ 0.5%'}]},
+  {id:'nv_s',name:'PowerLink search',units:['nv_search'],min:0,share:70,buy:'CPC',rate:1.8,stage:'Consideration',ini:1,tgt:'Brand, product and data backup terms in Korean',kpi:'CTR ≥ 3%'},
+  {id:'nv_g',name:'GFA feed & display',units:['nv_gfa'],min:1,share:30,buy:'CPM',rate:6,stage:'Awareness',ini:0,tgt:'Interest: IT, cloud, security',kpi:'CTR ≥ 0.5%'}]},
 ];
 for(const u in UNITS){UNITS[u].fmt=UNIT_META[u][0];UNITS[u].medium=UNIT_META[u][1]}
 // copy limits used to fit the ad copy column (h = headline, b = body / primary text, cta = button)
 const LIMS={meta_feed_img:{h:40,b:125},meta_feed_vid:{h:40,b:125},meta_reels:{b:72},meta_lgf:{h:60,b:160},li_image:{h:70,b:150},li_video:{h:70,b:150},li_tla:{b:3000},li_doc:{h:70,b:150},li_lgf:{h:60,b:160},li_conv:{b:500,cta:25},gs_rsa:{h:30,b:90},gs_ext:{h:25,b:35},
- x_image:{h:70,b:100},x_video:{b:100},rd_image:{h:150},yt_instream:{h:40,b:90},yt_shorts:{h:40},nl_sponsor:{h:60,b:450},iab_display:{h:40,cta:15},native_display:{h:50,b:90,cta:15},native_article:{h:90},
+ x_image:{h:70,b:100},x_video:{b:100},rd_image:{h:150},yt_instream:{h:40,b:90},ctv_spot:{},yt_shorts:{h:40},nl_sponsor:{h:60,b:450},iab_display:{h:40,cta:15},native_display:{h:50,b:90,cta:15},native_article:{h:90},
  podcast:{},creator_post:{},event_pkg:{h:60,b:300},wc_moments:{b:40},wc_oa:{h:28,b:60},wc_channels:{b:40},bd_search:{h:25,b:80},nv_search:{h:15,b:45},nv_gfa:{h:25,b:45}};
 const CHMAP=Object.fromEntries(CH.map(c=>[c.id,c]));
 const PLMAP={};CH.forEach(c=>c.pl.forEach(p=>PLMAP[p.id]={...p,ch:c}));
 
-/* ==================== EXAMPLE STATE (fictional sample: "Example Co." data security lead-gen plan) ==================== */
-// Fictional sample data: a lead-gen plan for an enterprise data security company. Every number is illustrative.
-const EX_NAME='Example Co. · Cyber Resilience Lead Gen FY28';
-const EXAMPLE_BRIEF=`SAMPLE DATA. GTM Strategy: Example Co. · Cyber Resilience Lead Gen FY28
-"Example Co." is a fictional enterprise data security company. Budgets, KPIs, timing and proof points are illustrative assumptions.
+/* ==================== EXAMPLE STATE (sample GTM, fictional "Vaultline", a B2B data resilience company) ==================== */
+const EX_NAME='Vaultline · Data Resilience Platform 2027';
+const EX_OLD=['Example Co. · Growth Platform 2027','One Unity · Unity Acquire 2026','Fernway · Spend Platform 2027'];
+/* any saved plan that still carries an older example (Unity, Fernway, Example Co.) is swapped for the Vaultline example */
+const isOldEx=s=>!!s&&(EX_OLD.includes(s.name)||/\b(unity|fernway)\b/i.test([s.name,s.product,s.brief].join(' ')));
+const EXAMPLE_BRIEF=`GTM Strategy: Vaultline · Data Resilience Platform 2027 (fictional sample brief used to pre-fill this example)
 
-Solution: Example Co. Data Security Platform. Back up, secure and recover data across data center, cloud, SaaS and identity: immutable backups, threat monitoring, data security posture (DSPM), identity recovery and clean, fast recovery after ransomware.
+Solution: Vaultline Data Resilience Platform, backup, recovery and ransomware protection for virtual, physical, cloud and SaaS (Microsoft 365) workloads, with immutable storage and instant recovery. Sold direct, through channel partners and as a service through MSPs.
 
-Program goal: pipeline. Paid media is measured on qualified meetings and sourced pipeline, not clicks.
+2027 initiatives
+1. Data Resilience Brand Awareness: make Vaultline the first name IT leaders think of when ransomware hits. KPIs: +6 pts aided awareness among IT decision-makers in North America and EMEA; +25% branded search volume.
+2. Free Edition Downloads & Trials: grow downloads of Vaultline Community Edition and 30-day trials among SMB and mid-market IT teams. KPIs: +35% YoY downloads and trials; 55% of trials running a first backup job within 7 days.
+3. Enterprise Pipeline & Ransomware Recovery: win enterprises (1,000+ employees) replacing legacy backup with cyber-resilient recovery. KPIs: +30% sales-qualified pipeline; $40M in sourced pipeline across direct and partner deals.
 
-FY28 initiatives (Feb 2027 – Jan 2028)
-1. Ransomware Recovery Category Leadership: own "recover clean data fast" with security and IT leaders. KPIs (illustrative): +15 pts aided awareness in target accounts; 60% of tier-1 accounts engaged.
-2. Pipeline Acceleration (Assessment & Demo): turn engaged accounts into meetings. KPIs (illustrative): 1,800 MQLs; 25% MQL→SQL; $40M sourced pipeline; cost per SQL ≤ $1,200.
-3. Cloud, SaaS & Identity Expansion: grow existing data center customers into cloud, Microsoft 365, identity recovery and DSPM. KPIs (illustrative): 20% of customers adding a cloud, SaaS or identity workload; 300 expansion opportunities.
+ICP: SMB IT teams (self-serve download and trial, partner-assisted), mid-market companies (trial plus inside sales) and enterprises with 1,000+ employees (sales-led with channel partners and global SIs).
+Personas & where they learn:
+- Decision-maker (CIO, CISO, VP IT Infrastructure): LinkedIn; IT and security trade press; analyst reports; CIO and security conferences.
+- Technical influencer (Backup admin, Systems engineer, Cloud architect): LinkedIn, YouTube tutorials, Reddit sysadmin communities, vendor user groups, webinars.
+- Day-to-day user (IT admin, Sysadmin, MSP technician): Google and LLM search, YouTube, Reddit, tech newsletters and podcasts.
+Markets: North America and EMEA lead, with Japan, Southeast Asia and LATAM growing through partners.
 
-ICP: enterprise (5,000+ employees) and upper mid-market (1,000–5,000) in financial services, healthcare, public sector, retail and manufacturing; ~1,500 named target accounts in tiers 1–3, many replacing legacy backup (conquest: legacy backup vendors).
-Buying committee & where they learn:
-- Decision-maker (CISO, CIO, VP Infrastructure): LinkedIn; security and IT trade press; RSAC, Gartner Security & Risk; analyst reports; exec podcasts.
-- Technical influencer (Security Architect, Backup / Storage Architect, Cloud Architect): LinkedIn groups, Reddit (r/sysadmin, r/cybersecurity), technical webinars, peer review sites.
-- Day-to-day user (Backup Admin, IT Ops Manager, SecOps Analyst): LinkedIn, Reddit, forums, YouTube how-tos, search / LLM search.
-Markets: North America leads; EMEA (UK, DACH, France) and Japan.
-
-Offers by stage: annual State of Data Security report (gated); ransomware readiness assessment; live recovery demo and hands-on lab; cyber recovery workshop for SecOps and IT teams; cost-of-downtime calculator.
-
-Moments (illustrative timing): Mar ransomware readiness assessment push; Apr/May RSAC; Jun Gartner Security & Risk Summit and AWS re:Inforce; Jul State of Data Security report; Aug Black Hat; Sep identity resilience campaign; Oct Example Co. customer summit and Cybersecurity Awareness Month; Nov Microsoft Ignite; Dec AWS re:Invent. Ongoing: customer recovery stories, analyst recognition, partner co-marketing (Microsoft, AWS, Google Cloud, SIs), technical webinars.`;
-
+Launch calendar: Q1-Mar Data Resilience 2027 brand campaign; Q2-Apr v13 platform launch (immutable cloud vault); Q2-May flagship user conference VaultCon; Q2-Jun Microsoft 365 backup v8; Q3-Jul 2027 Ransomware Trends report; Q3-Sep cloud and infrastructure conference season; Q4-Oct Cybersecurity Awareness Month campaign; Q4-Nov AWS re:Invent; Q4-Dec year-end budget flush campaign. Ongoing: customer recovery stories, partner co-marketing with MSPs and resellers, hands-on labs and webinars.`;
 function exampleState(){return{
- name:EX_NAME,product:'Example Co. Data Security Platform (backup, threat monitoring, DSPM, identity recovery and clean recovery across data center, cloud and SaaS)',brief:EXAMPLE_BRIEF,
- budgets:{lean:600000,standard:1500000,full:3000000},start:'2027-02-01',end:'2028-01-31',
+ name:EX_NAME,product:'Data Resilience Platform (backup, recovery and ransomware protection for VMs, cloud and Microsoft 365)',brief:EXAMPLE_BRIEF,
+ budgets:{lean:3000000,standard:5000000,full:8000000},start:'2027-03-01',end:'2027-12-31',
  markets:[
-  {id:'NA',name:'North America',lang:'EN',on:true,weight:60},
-  {id:'EMEA',name:'EMEA',lang:'EN',on:true,weight:28},
+  {id:'NA',name:'North America',lang:'EN',on:true,weight:50},
+  {id:'EMEA',name:'EMEA',lang:'EN',on:true,weight:35},
+  {id:'LATAM',name:'LATAM',lang:'ES',on:true,weight:5},
   {id:'CN',name:'China',lang:'ZH',on:false,weight:0},
-  {id:'JP',name:'Japan',lang:'JA',on:true,weight:12},
+  {id:'JP',name:'Japan',lang:'JA',on:true,weight:5},
   {id:'KR',name:'Korea',lang:'KO',on:false,weight:0},
-  {id:'SEA',name:'Southeast Asia',lang:'EN',on:false,weight:5},
-  {id:'LATAM',name:'LATAM',lang:'ES',on:false,weight:5}],
- personas:{dm:{label:'Decision-maker (CISO, CIO, VP Infrastructure)',on:true},tech:{label:'Technical influencer (Security / Backup / Cloud Architect)',on:true},user:{label:'Day-to-day user (Backup Admin, IT Ops, SecOps)',on:true}},
+  {id:'SEA',name:'Southeast Asia',lang:'EN',on:true,weight:5}],
+ personas:{dm:{label:'Decision-maker (CIO, CISO, VP IT Infrastructure)',on:true},tech:{label:'Technical influencer (Backup admin, Systems engineer, Cloud architect)',on:true},user:{label:'Day-to-day user (IT admin, Sysadmin, MSP technician)',on:true}},
  initiatives:[
-  {name:'Ransomware Recovery Category Leadership',stage:'Awareness',pillar:'When ransomware hits, recover clean data in hours, not weeks'},
-  {name:'Pipeline Acceleration (Assessment & Demo)',stage:'Conversion',pillar:'Find out how fast you could recover: get a ransomware readiness assessment'},
-  {name:'Cloud, SaaS & Identity Expansion',stage:'Consideration',pillar:'Secure and recover data across data center, cloud, SaaS and identity'}],
+  {name:'Data Resilience Brand Awareness',stage:'Awareness',pillar:'The data resilience platform IT trusts when ransomware hits'},
+  {name:'Free Edition Downloads & Trials',stage:'Conversion',pillar:'Download free and protect your first workloads in minutes'},
+  {name:'Enterprise Pipeline & Ransomware Recovery',stage:'Consideration',pillar:'Immutable backups and clean, instant recovery at enterprise scale'}],
  moments:[
-  {name:'Ransomware readiness assessment push',month:'2027-03',type:'launch',ini:1},
-  {name:'RSAC',month:'2027-04',type:'event',ini:0},
-  {name:'Gartner Security & Risk Summit',month:'2027-06',type:'event',ini:0},
-  {name:'AWS re:Inforce',month:'2027-06',type:'event',ini:2},
-  {name:'State of Data Security report',month:'2027-07',type:'content',ini:0},
-  {name:'Black Hat USA',month:'2027-08',type:'event',ini:0},
-  {name:'Identity resilience campaign',month:'2027-09',type:'launch',ini:2},
-  {name:'Example Co. customer summit',month:'2027-10',type:'event',ini:1},
-  {name:'Microsoft Ignite',month:'2027-11',type:'event',ini:2},
-  {name:'AWS re:Invent',month:'2027-12',type:'event',ini:2}],
- channels:Object.fromEntries(CH.map(c=>[c.id,{on:true,weight:c.weight}])),
+  {name:'Data Resilience 2027 brand campaign',month:'2027-03',type:'launch',ini:0},
+  {name:'v13 platform launch (immutable cloud vault)',month:'2027-04',type:'launch',ini:2},
+  {name:'VaultCon user conference',month:'2027-05',type:'event',ini:2},
+  {name:'Microsoft 365 backup v8',month:'2027-06',type:'launch',ini:1},
+  {name:'2027 Ransomware Trends report',month:'2027-07',type:'content',ini:2},
+  {name:'Cloud & infrastructure conference season',month:'2027-09',type:'event',ini:0},
+  {name:'Cybersecurity Awareness Month campaign',month:'2027-10',type:'launch',ini:0},
+  {name:'AWS re:Invent',month:'2027-11',type:'event',ini:2},
+  {name:'Year-end budget flush campaign',month:'2027-12',type:'launch',ini:1}],
+ channels:Object.fromEntries(CH.map(c=>[c.id,{on:!['wechat','baidu','naver'].includes(c.id),weight:c.weight}])),
  concepts:{lean:2,standard:3,full:4},refresh:{lean:12,standard:8,full:6},rates:{},
- formats:defaultFormats(),landing:'https://example.com/',copy:exampleCopy(),
- // illustrative enterprise deal economics for the Growth Plan tab
- growth:{acv:120000,gm:80,life:5,agency:12,creative:150000,tools:40000,sdr:6,perSdr:150,goalType:'pipe',goal:40000000}
+ formats:defaultFormats(),landing:'https://example.com/',copy:exampleCopy()
 };}
-function exampleCopy(){return{src:EX_NAME+' · sample copy, illustrative proof points',
- voice:'Calm, credible and specific. Speak to security and IT leaders who expect an attack: lead with recovery time and proof, name the risk plainly, never use fear for its own sake.',
- eyebrow:'New: State of Data Security report\nRansomware readiness assessment\nRecover in hours',
- ctas:'Get your readiness assessment\nBook a recovery demo\nGet the report\nTry the hands-on lab\nRegister now',
- proof:'Illustrative: a regional bank restored critical systems in 4 hours during a ransomware drill\nIllustrative: a hospital network cut backup admin time 60% after replacing legacy backup\nIllustrative: a retailer protected Microsoft 365, cloud and identity from one console in 30 days',
+function exampleCopy(){return{src:EX_NAME,
+ voice:'Calm, credible and technical. Lead with recovery and certainty, back claims with proof, speak to IT the way IT speaks.',
+ eyebrow:'New: v13 immutable cloud vault\nThe 2027 Ransomware Trends report\nFree Community Edition',
+ ctas:'Download free\nStart free trial\nGet the report\nRegister now\nRequest a demo',
+ proof:'A regional hospital restored 400 VMs within 4 hours of a ransomware attack\nAn MSP protects 1,200 Microsoft 365 tenants from one console\nA global manufacturer cut backup storage costs 38% with immutable cloud tiering',
  ini:[
-  {h:'Recover in hours, not weeks\nAssume breach. Recover fast.\nRansomware will hit. Be ready.\nClean recovery, proven\nYour last line of defense',
-   b:'Backups attackers cannot touch.\nExample Co. combines immutable backups, threat monitoring and clean recovery, so ransomware does not mean weeks of downtime.\nIllustrative: a regional bank restored critical systems in 4 hours during a ransomware drill.'},
-  {h:'How fast could you recover?\nGet a free readiness review\nSee a live recovery demo\nTest your ransomware plan',
-   b:'Find your recovery gaps.\nA free ransomware readiness assessment shows how long recovery would really take, and what to fix first.\nBook a 30-minute demo and watch a full restore from a simulated attack.'},
-  {h:'Secure cloud and SaaS data\nRecover identity, too\nOne platform, every workload\nData security beyond backup',
-   b:'Cover cloud, SaaS and identity in one place.\nExtend protection to cloud, Microsoft 365 and identity from the console you already use.\nSee where sensitive data lives, who can reach it, and recover it if it is hit.'}]};}
+  {h:'Recover from anything\nRansomware happens. Downtime doesn\'t have to.\nYour last line of defense\nBackup you can bet the business on\nResilience, built in',
+   b:'Backup, recovery and ransomware protection in one platform.\nProtect every VM, cloud workload and Microsoft 365 tenant, and recover clean in minutes.\nIT teams run on Vaultline so a bad day never becomes a lost week.'},
+  {h:'Download free in minutes\nProtect 10 workloads free\nYour first backup in 15 minutes\nStart your free trial',
+   b:'Download Vaultline Community Edition free.\nInstall in minutes, protect your first workloads today and upgrade when you grow.\nAn MSP protects 1,200 Microsoft 365 tenants from one console.'},
+  {h:'Immutable backups. Instant recovery.\nRecover clean, every time\nReplace legacy backup',
+   b:'Prove you can recover before you need to.\nImmutable storage, malware scanning on restore and automated recovery testing at enterprise scale.\nA regional hospital restored 400 VMs within 4 hours of a ransomware attack.'}]};}
 function blankPersonas(){return {dm:{label:'Decision-maker',on:true},tech:{label:'Technical influencer',on:true},user:{label:'Day-to-day user',on:true}}}
 function blankState(){const yr=new Date().getFullYear()+1;return{
  name:'',product:'',brief:'',budgets:{lean:250000,standard:500000,full:1000000},start:yr+'-01-01',end:yr+'-12-31',
@@ -214,9 +212,11 @@ function blankState(){const yr=new Date().getFullYear()+1;return{
  concepts:{lean:2,standard:3,full:4},refresh:{lean:12,standard:8,full:6},rates:{},formats:defaultFormats(),landing:'',copy:{src:'',voice:'',ctas:'',proof:'',ini:[]},copyEdits:{}}}
 function defaultFormats(){return Object.fromEntries(FORMATS.map(f=>[f.id,{on:true}]).concat([['_video',{lengths:'15s, 30s'}]]))}
 
-const LSKEY='paid-media-demo-v1';
+const LSKEY='paid-media-demo-hub-v2';
 let S;try{S=JSON.parse(localStorage.getItem(LSKEY)||'null')}catch(e){S=null}
-if(!S||!S.markets)S=exampleState();
+if(!S||!S.markets||isOldEx(S))S=exampleState();
+if(S.name===EX_NAME&&S.budgets&&+S.budgets.lean===400000&&+S.budgets.standard===900000&&+S.budgets.full===1600000)S.budgets={lean:1500000,standard:2500000,full:4000000};
+if(!S.split||(S.split.brand===0.3&&S.split.ss===0.55&&S.split.tl===0.1))S.split={brand:0.46,ss:0.55,tl:0.10};
 if(!S.formats)S.formats=defaultFormats();if(!S.formats._video)S.formats._video={lengths:'15s, 30s'};if(S.landing==null)S.landing='https://example.com/';if(!S.copy)S.copy=exampleCopy();if(S.copy.eyebrow==null&&S.copy.src===EX_NAME)S.copy.eyebrow=exampleCopy().eyebrow;if(S.copy.src==null&&S.name===EX_NAME)S.copy.src=S.name;
 let UI={tier:1,tab:'summary',group:'channel',mvp:'master'};
 try{Object.assign(UI,JSON.parse(localStorage.getItem(LSKEY+'-ui')||'{}'))}catch(e){}
@@ -228,7 +228,7 @@ const pjId=()=>'p'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)
 let PJ_ERR=false;
 function save(){try{localStorage.setItem(LSKEY,JSON.stringify(S));localStorage.setItem(LSKEY+'-ui',JSON.stringify(UI))}catch(e){}
  if(UI.pj){const P=pjAll();if(P[UI.pj]){P[UI.pj].S=S;P[UI.pj].saved=Date.now();PJ_ERR=!pjPut(P);const h=document.getElementById('pj-hint');if(h)h.textContent=PJ_ERR?'browser storage full: download a backup':'saved '+new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}}}
-(function pjEnsure(){const P=pjAll();if(!UI.pj||!P[UI.pj]){const id=pjId();P[id]={name:S.name||'My first plan',S,saved:Date.now()};UI.pj=id;pjPut(P);try{localStorage.setItem(LSKEY+'-ui',JSON.stringify(UI))}catch(e){}}})();
+(function pjEnsure(){const P=pjAll();let ch=false;Object.keys(P).forEach(id=>{if(isOldEx(P[id].S)||EX_OLD.includes(P[id].name)||/\bunity\b/i.test(P[id].name||'')){P[id].name=EX_NAME;P[id].S=id===UI.pj?S:exampleState();ch=true}});if(ch)pjPut(P);if(!UI.pj||!P[UI.pj]){const id=pjId();P[id]={name:S.name||'My first plan',S,saved:Date.now()};UI.pj=id;pjPut(P);try{localStorage.setItem(LSKEY+'-ui',JSON.stringify(UI))}catch(e){}}})();
 function pjOpen(id){const P=pjAll();if(!P[id])return;try{localStorage.setItem(LSKEY,JSON.stringify(P[id].S));UI.pj=id;localStorage.setItem(LSKEY+'-ui',JSON.stringify(UI))}catch(e){}location.reload()}
 function renderProjects(){const P=pjAll(),ids=Object.keys(P).sort((a,b)=>(P[b].saved||0)-(P[a].saved||0));
  $('#pj-sel').innerHTML=ids.map(id=>`<option value="${id}" ${id===UI.pj?'selected':''}>${esc(P[id].name||'Untitled plan')}</option>`).join('');
@@ -340,6 +340,17 @@ const CTAPICK={LinkedIn:'CTA button (pick from LinkedIn list)',Meta:'CTA button 
 // Channel split per version: a version's own weights once its budgets are edited, else the shared default split
 const chW=(id,t)=>{const c=S.channels[id];return c?+c.weight:0};
 const setChW=(id,t,v)=>{const c=S.channels[id];(c.tw=c.tw||{})[TIERS[t]]=v};
+/* ==================== BRAND VS GROWTH SPLIT (section 2) ==================== */
+// Share of each version's budget: brand media, growth & performance media (self-serve vs pipeline), and a test & learn reserve held back from the lines
+// Brand default = Binet & Field's B2B benchmark (about 46% brand, 54% activation, LinkedIn B2B Institute)
+const SPLIT_DEF={brand:0.46,ss:0.55,tl:0.10};
+const splitOf=()=>{const x={...SPLIT_DEF,...(S.split||{})};x.brand=Math.min(0.9,Math.max(0,+x.brand||0));x.tl=Math.min(0.5,Math.max(0,+x.tl||0));if(x.brand+x.tl>0.95)x.tl=Math.max(0,0.95-x.brand);x.ss=Math.min(1,Math.max(0,+x.ss||0));return x};
+const SIDES=['brand','self','pipe'],SIDENAME={brand:'Brand',self:'Growth · Self-Serve',pipe:'Growth · Pipeline'};
+const PIPE_PL=new Set(['li_doc','li_conv','li_tech','gs_comp','mt_lead','abm_d','abm_rt','ev_pkg','ev_soc','tr_nat']);
+const sideOf=p=>roleOf(p)==='brand'?'brand':(S.plSide||{})[p.id]||(PIPE_PL.has(p.id)||p.buy==='CPL'?'pipe':'self');
+const splitTargets=total=>{const x=splitOf(),g=Math.max(0,1-x.brand-x.tl);return {brand:total*x.brand,self:total*g*x.ss,pipe:total*g*(1-x.ss),reserve:total*x.tl,media:total*(1-x.tl)}};
+const mediaBudget=t=>splitTargets(+S.budgets[TIERS[t]]||0).media;
+function requantify(l){const b=l.budget,r=l.rate;if(l.p.buy==='Flat'){l.qty=Math.floor(b/r);l.under=l.qty<1}else l.qty=l.p.buy==='CPM'?b/r*1000:b/r}
 function compute(tier){
  const T=TIERS[tier],total=+S.budgets[T]||0;
  const mkts=S.markets.filter(m=>m.on&&+m.weight>0),wsum=sum(mkts.map(m=>m.weight));
@@ -379,6 +390,12 @@ function compute(tier){
      due:isoD(new Date(parseD(S.start)-lead*864e5)),under:p.buy==='Flat'&&qty<1});
    });});
  }
+ // Brand vs Growth split: every line is rescaled so each side lands on its share of the budget; the test & learn reserve stays unplaced.
+ // A side with no lines passes its share to the others, so the lines always add up to the media budget.
+ {const tg=splitTargets(total),have={};lines.forEach(l=>{l.side=sideOf(l.p);have[l.side]=(have[l.side]||0)+l.budget});
+  const live=SIDES.filter(k=>have[k]>0),ts=sum(live.map(k=>tg[k]));
+  live.forEach(k=>{const f=ts?tg[k]*tg.media/ts/have[k]:0;lines.forEach(l=>{if(l.side===k){l.budget*=f;requantify(l)}})});
+  for(let i=lines.length-1;i>=0;i--)if(!(lines[i].budget>0))lines.splice(i,1)}
  lines.forEach((l,i)=>l.id='L'+String(i+1).padStart(3,'0'));
  // diminishing returns: each line's results scale with its channel's total spend
  const chSp={};lines.forEach(l=>chSp[l.c.id]=(chSp[l.c.id]||0)+l.budget);lines.forEach(l=>l.sat=satF(l.c.id,chSp[l.c.id]));
@@ -419,7 +436,7 @@ function compute(tier){
    master:M.best.size||'—'}});
  const keyToId=Object.fromEntries(masters.map(m=>[m.key,m.id]));
  lines.forEach(l=>{l.bomIds=[...l.bom].map(k=>keyToId[k]).sort()});
- return {tier,total,lines,months,flightRows,deliverables,rounds,concepts,masters,lens};
+ return {tier,total,lines,months,flightRows,deliverables,rounds,concepts,masters,lens,split:splitTargets(total)};
 }
 function nextMonth(k){let [y,m]=k.split('-').map(Number);m++;if(m>12){m=1;y++}return `${y}-${String(m).padStart(2,'0')}`}
 
@@ -454,7 +471,7 @@ const TRAFFIC_DEF={bu:'',region:'',cc:'',crm:'',crmName:'',content:'ug',ctype:'r
 const trafficOf=()=>({...TRAFFIC_DEF,...(S.traffic||{})});
 const OBJ={CPM:['Brand awareness','Impressions / reach'],CPC:['Website traffic','Landing page clicks'],CPL:['Lead generation','Leads'],CPV:['Video views','Views (2s+ / ThruPlay)'],CPS:['Sponsored messaging','Sends / opens'],Flat:['Sponsorship (IO)','Delivery per IO']};
 const STG={Awareness:'aw',Consideration:'co',Conversion:'cv'};
-const CHC={linkedin:'soc-li',google:'sem-gg',meta:'soc-fb',x:'soc-x',reddit:'soc-rd',youtube:'vid-yt',trade:'pr-trd',creators:'cr-nl',abm:'prg-abm',events:'evt',wechat:'soc-wc',baidu:'sem-bd',naver:'sem-nv'};
+const CHC={linkedin:'soc-li',google:'sem-gg',meta:'soc-fb',x:'soc-x',reddit:'soc-rd',youtube:'vid-yt',ctv:'prg-ctv',trade:'pr-trd',creators:'cr-nl',abm:'prg-abm',events:'evt',wechat:'soc-wc',baidu:'sem-bd',naver:'sem-nv'};
 const FMTC={static:'img',video:'vid',carousel:'car',text:'txt',display:'dsp',native:'nat',messaging:'msg',audio:'aud',doc:'doc'};
 const DEF_EXCL='Competitor & partner lists; current employees; students & interns; existing customers / converters (CRM upload)';
 const DEVICES={search:'All (mobile bid adj.)',video:'All',display:'All',social:'All (mobile-first)'};
@@ -532,10 +549,10 @@ function flightTable(R){
  return {name:'Flighting',cols,rows};
 }
 function assumptionTable(R){
- const cols=[['Channel','channel'],['Placement','placement'],['Audience','aud'],['Targeting','tmethod'],['Buy type','buy'],['Rate used','rate'],['Benchmark rate','bench'],['Budget','budget'],['Est. delivery','qty'],['Delivery unit','qu'],['Proj. impressions','imp'],['Proj. clicks','clk'],['Proj. landing page visits','lpv'],['Proj. video views','views'],['Proj. leads','leads'],['Cost per lead','cpl'],['Markets','mk'],['Lines','n'],['Share of channel %','share'],['Funnel stage','stage'],['KPI','kpi']];
+ const cols=[['Channel','channel'],['Placement','placement'],['Role','role'],['Audience','aud'],['Targeting','tmethod'],['Buy type','buy'],['Rate used','rate'],['Benchmark rate','bench'],['Budget','budget'],['Est. delivery','qty'],['Delivery unit','qu'],['Proj. impressions','imp'],['Proj. clicks','clk'],['Proj. landing page visits','lpv'],['Proj. video views','views'],['Proj. leads','leads'],['Cost per lead','cpl'],['Markets','mk'],['Lines','n'],['Share of channel %','share'],['Funnel stage','stage'],['KPI','kpi']];
  const rows=[];CH.forEach(c=>c.pl.forEach(p=>{const ls=R.lines.filter(l=>l.p.id===p.id);if(!ls.length)return;
   const F_={imp:0,clk:0,lpv:0,views:0,leads:0};ls.forEach(l=>{const f=lineFun(l);if(f)for(const k in F_)F_[k]+=f[k]});for(const k in F_)F_[k]=Math.round(F_[k]);
-  rows.push({...F_,cpl:F_.leads?+(sum(ls.map(l=>l.budget))/F_.leads).toFixed(2):'',channel:c.name,placement:p.name,tier:TIERNAME[p.min],buy:p.buy,rate:rateOf(p),bench:p.rate,budget:sum(ls.map(l=>l.budget)),qty:Math.round(sum(ls.map(l=>l.qty))),qu:ls[0].qu,mk:ls.map(l=>l.market).join(', '),n:ls.length,share:p.share,stage:p.stage,kpi:p.kpi,_id:p.id,aud:audLabel(c,p),tmethod:tgtOf(c,p)})}));
+  rows.push({...F_,cpl:F_.leads?+(sum(ls.map(l=>l.budget))/F_.leads).toFixed(2):'',channel:c.name,placement:p.name,tier:TIERNAME[p.min],buy:p.buy,rate:rateOf(p),bench:p.rate,budget:sum(ls.map(l=>l.budget)),qty:Math.round(sum(ls.map(l=>l.qty))),qu:ls[0].qu,mk:ls.map(l=>l.market).join(', '),n:ls.length,share:p.share,stage:p.stage,role:ROLENAME[roleOf(p)],kpi:p.kpi,_id:p.id,aud:audLabel(c,p),tmethod:tgtOf(c,p)})}));
  const fb=fairRound(rows.map(r=>r.budget));rows.forEach((r,i)=>r.budget=fb[i]);
  return {name:'Buy Details',cols,rows};
 }
@@ -549,7 +566,7 @@ function totals(R){const t={imp:0,clk:0,views:0,leads:0};R.lines.forEach(l=>{if(
 // Full-funnel estimate across every buy: each line's bought unit plus benchmark ratios for the rest (flat-fee buys not estimated)
 const FUN={ctr:0.005,ctrCpc:0.05,viewRate:0.3,leadForm:0.10,openRate:0.4,sendCtr:0.03,lpv:0.8,eng:0.006,cvr:0.02};
 // Channel benchmarks (B2B, 2025 industry data): override FUN per channel. Sources are listed on the Flighting tab.
-const CHFUN={linkedin:{ctr:0.005,leadForm:0.10,cvr:0.025,lpv:0.75},google:{ctrCpc:0.06,cvr:0.03,lpv:0.85},meta:{ctr:0.008,leadForm:0.12,cvr:0.015},x:{ctr:0.004,cvr:0.01},reddit:{ctr:0.005,cvr:0.01},youtube:{ctr:0.004,viewRate:0.3,cvr:0.01},
+const CHFUN={linkedin:{ctr:0.005,leadForm:0.10,cvr:0.025,lpv:0.75},google:{ctrCpc:0.06,cvr:0.03,lpv:0.85},meta:{ctr:0.008,leadForm:0.12,cvr:0.015},x:{ctr:0.004,cvr:0.01},reddit:{ctr:0.005,cvr:0.01},youtube:{ctr:0.004,viewRate:0.3,cvr:0.01},ctv:{ctr:0.001,cvr:0.01},
  trade:{ctr:0.001,cvr:0.015},abm:{ctr:0.002,cvr:0.015},events:{ctr:0.005,cvr:0.02},wechat:{ctr:0.008,cvr:0.01},baidu:{ctrCpc:0.04,cvr:0.02},naver:{ctrCpc:0.04,ctr:0.003,cvr:0.02}};
 const funOf=id=>({...FUN,...(CHFUN[id]||{})});
 const BENCH_SRC=[['LinkedIn','CPM $30–90 · CTR 0.44–0.65% · CPC $6–10 ($10+ for software) · lead form completion 6–18% · CPL $75–250','https://www.clickminded.com/linkedin-ads-benchmarks/'],
@@ -558,6 +575,9 @@ const BENCH_SRC=[['LinkedIn','CPM $30–90 · CTR 0.44–0.65% · CPC $6–10 ($
  ['Meta','B2B link CTR ~0.8% · lead ads CPL up ~21% in 2025 · B2B SaaS CPL ~$60','https://wordstream.com/blog/facebook-ads-benchmarks-2025'],
  ['Reddit','CPM $3–12 · promoted post CTR 0.3–1.0% · B2B CPC $0.50–4','https://benly.ai/learn/reddit-ads/reddit-ads-cost-benchmarks'],
  ['YouTube','CPM ~$9 (standard video) · in-stream CPV ~$0.05','https://storegrowers.com/youtube-ads-benchmarks'],
+ ['Connected TV','Average CTV CPM ~$26; B2B planning $30–85 depending on targeting (FAST $15–25, addressable first-party $45–85)','https://directiveconsulting.com/blog/ctv-advertising-cost-b2b-budget-guide/'],
+ ['Brand lift (YouTube)','Average +17% relative lift in awareness and +13% in brand search interest across YouTube Brand Lift studies; in points that is about +3 on an 18% awareness base','https://www.thinkwithgoogle.com/_qs/documents/2695/95bc1_youtube-insights-stats-data-trends-EN.pdf'],
+ ['Brand vs activation (B2B)','Binet & Field for the LinkedIn B2B Institute: B2B grows best at about 46% brand, 54% activation','https://business.linkedin.com/en-uk/marketing-solutions/blog/posts/B2B-Marketing/2019/How-B2B-marketing-really-drives-growth'],
  ['Pipeline','Lead→MQL 31–41% · MQL→SQL 13% median (Salesforce) to 26% for paid search · SQL→opp 30–50% × opp→won 20–35% ≈ 10–15% SQL→customer','https://thedigitalbloom.com/learn/pipeline-performance-benchmarks-2025/'],
  ['Pipeline (trend)','SQL→closed-won fell 5–6 points in 2025 (ICONIQ)','https://www.saastr.com/the-age-of-ai-the-top-10-gtm-learnings-from-iconiqs-2025-b2b-saas-report']];
 function benchHTML(){const ids=CH.filter(c=>S.channels[c.id]?.on).map(c=>c);
@@ -584,7 +604,7 @@ function funnel(R){const o={imp:0,reach:0,clk:0,lpv:0,eng:0,views:0,sends:0,lead
 const GROWTH_DEF={acv:60000,gm:80,life:4,agency:12,creative:40000,tools:15000,sdr:2,perSdr:150,goalType:'cust',goal:40};
 const gr=()=>({...GROWTH_DEF,...(S.growth||{})});
 // Diminishing returns: spend where a channel's results fall to ~63% of linear (planning estimate per flight)
-const SAT_CAP={linkedin:1500000,google:800000,meta:1000000,x:300000,reddit:300000,youtube:800000,trade:300000,creators:200000,abm:600000,events:300000,wechat:300000,baidu:200000,naver:200000};
+const SAT_CAP={linkedin:1500000,google:800000,meta:1000000,x:300000,reddit:300000,youtube:800000,ctv:800000,trade:300000,creators:200000,abm:600000,events:300000,wechat:300000,baidu:200000,naver:200000};
 const satF=(id,x)=>{const c=SAT_CAP[id]||500000,r=x/c;return r>0?(1-Math.exp(-r))/r:1};
 function econ(R,o){const G=gr(),media=sum(R.lines.map(l=>l.budget)),fees=media*G.agency/100,total=media+fees+(+G.creative||0)+(+G.tools||0);
  const pipeline=o.sql*G.acv,rev=o.cust*G.acv,gp=rev*G.gm/100,cacM=o.cust?media/o.cust:0,cacF=o.cust?total/o.cust:0,ltv=G.acv*G.gm/100*G.life;
@@ -667,6 +687,187 @@ function growthAOA(R){const o=funnel(R),E=econ(R,o),G=E.G;return [['GROWTH PLAN 
 
 /* ==================== AUDIENCE, TARGETING & ASSETS ==================== */
 // Per-placement audience (from the personas in section 4) and targeting method, editable on Buy Details; flows to the agency sheet
+/* ==================== MEDIA MIX OUTCOMES ==================== */
+// Brand vs demand. Each Buy Details placement has a role (Awareness placements start as Brand). The tab chains brand spend → lift →
+// demand signals → pipeline → payback, lets you try another brand share, and compares the mix with putting the whole budget into demand.
+// Brand link defaults are conservative planning placeholders: replace each with your own lift study or geo holdout read.
+// studyLift 3 pts ≈ YouTube's average +17% relative awareness lift on an 18% base; el 4% per pt ≈ YouTube's average +13% brand-search interest lift (Think with Google)
+const MIX_DEF={studyLift:3,studySpend:0,ex:0.6,consLift:1.5,recLift:5,baseAw:18,baseCons:9,el:4,bl:900,sh:50,cu:10,ou:5,freq:4,geo:''};
+const mixOf=()=>({...MIX_DEF,...(S.mix||{})});
+const ROLENAME={brand:'Brand',demand:'Demand'};
+const roleOf=p=>(S.plRole||{})[p.id]||(p.stage==='Awareness'?'brand':'demand');
+const isBrandL=l=>roleOf(l.p)==='brand';
+const roleSelect=pid=>{const r=roleOf(PLMAP[pid]);return `<select class="role-in" data-pid="${pid}" aria-label="Role for ${esc(PLMAP[pid].name)}">${['brand','demand'].map(k=>`<option value="${k}" ${r===k?'selected':''}>${ROLENAME[k]}</option>`).join('')}</select>`};
+function plBudgets(R){const b={};R.lines.forEach(l=>b[l.p.id]=(b[l.p.id]||0)+l.budget);return b}
+// Budgets a brand share would give: brand placements scale together, demand placements share the rest
+// A brand share of media becomes the Brand vs Growth Split's brand share of the whole budget (section 2)
+function mixPins(R,share){const b=plBudgets(R),ids=Object.keys(b),T=sum(ids.map(id=>b[id])),isB=id=>roleOf(PLMAP[id])==='brand';
+ const sB=sum(ids.filter(isB).map(id=>b[id])),sD=T-sB,want=T*share;if((want>0&&!sB)||(want<T&&!sD))return null;
+ return {brand:share*(1-splitOf().tl)}}
+// Write pins the same way typing a placement budget in Buy Details does
+function applyPins(St,tier,pins){const keep=S;S=St;try{St.split={...splitOf(),brand:pins.brand}}finally{S=keep}}
+// A version as if Buy Details held these budgets, without touching the saved plan
+function computeWith(tier,pins){if(!pins)return compute(tier);const keep=S;
+ S={...keep,split:{...splitOf(),brand:pins.brand}};
+ try{return compute(tier)}finally{S=keep}}
+const brandSpendOf=R=>sum(R.lines.filter(isBrandL).map(l=>l.budget));
+function mixStudySpend(M){return +M.studySpend||brandSpendOf(compute(1))||1}
+function mixStats(R,M,studySpend){const G=gr(),P=pipe();
+ const agg=ls=>{const o={spend:0,imp:0,clk:0,lpv:0,views:0,leads:0};ls.forEach(l=>{o.spend+=l.budget;const f=lineFun(l);if(f)['imp','clk','lpv','views','leads'].forEach(k=>o[k]+=f[k])});return o};
+ const B=R.lines.filter(isBrandL),D=R.lines.filter(l=>!isBrandL(l)),b=agg(B),d=agg(D),T=b.spend+d.spend;
+ const aw=b.spend>0?M.studyLift*Math.pow(b.spend/studySpend,Math.max(.05,M.ex)):0,k=M.studyLift?aw/M.studyLift:0;
+ const bs=aw*M.el/100,brandLeads=M.bl*bs,sh=b.spend>0?M.sh/100:0,cu=M.cu/100,ou=M.ou/100,r=P.mql*P.sql;
+ const dLeads=d.leads*(1+sh*cu),leads=dLeads+b.leads+brandLeads,opps=dLeads*r*(1+sh*ou)+(b.leads+brandLeads)*r,cust=opps*P.win;
+ const allIn=T*(1+G.agency/100)+(+G.creative||0)+(+G.tools||0),gpm=G.acv*G.gm/100/12,cac=cust?allIn/cust:0;
+ return {R,B,D,b,d,T,aw,k,cons:M.consLift*k,rec:M.recLift*k,bs,brandLeads,dLeads,leads,opps,cust,allIn,cac,pay:gpm&&cac?cac/gpm:0,gpm,r,sh,cu,ou,
+  rev:cust*G.acv,pipe:opps*G.acv,perfCPA:dLeads?d.spend/dLeads:0,baseCPA:d.leads?d.spend/d.leads:0,bCPA:leads?T/leads:0,cpo:opps?T/opps:0,
+  reach:b.imp/Math.max(1,+M.freq||1),cpm:b.imp?b.spend/b.imp*1000:0}}
+// Saved split, the scenario the slider asks for, and the all-demand comparison
+function mixModel(R0){const t=R0.tier,M=mixOf(),T=sum(R0.lines.map(l=>l.budget)),sB=brandSpendOf(R0),saved=T?sB/T:0,eps=Math.max(1,T*0.0005);
+ const ask=UI.mixShare?.[TIERS[t]],want=ask==null?saved:Math.max(0,Math.min(0.9,ask));
+ const pins=Math.abs(want*T-sB)<eps?null:mixPins(R0,want),share=pins||Math.abs(want*T-sB)<eps?want:saved;
+ const ss=mixStudySpend(M),X=mixStats(pins?computeWith(t,pins):R0,M,ss);
+ const zero=sB>0?mixPins(R0,0):null,A=zero?mixStats(computeWith(t,zero),M,ss):(sB>0?null:X);
+ return {t,M,T,sB,saved,share,pins,X,A,ss,dirty:!!pins,R0}}
+const pct0=v=>Math.round(v*100)+'%';
+const sgn=v=>(v>=0?'+':'−');
+const n1=v=>v>=10?compact(v):(+v.toFixed(1)).toString();
+function renderMix(R0){const Z=mixModel(R0),{M,X,A,T}=Z,G=gr(),P=pipe(),b0=plBudgets(R0),bN=plBudgets(X.R),VN=TIERNAME[Z.t];
+ const fa=(f,src)=>` data-f="${esc(f)}"${src?` data-fs="${esc(src)}"`:''} tabindex="0"`;
+ const inp=(k,l,u,step=1,w=64)=>`<div class="mx-field"><label for="mx-${k}">${l}</label><input class="rate mx-in" id="mx-${k}" type="number" min="0" step="${step}" data-k="${k}" value="${esc(M[k])}" style="width:${w}px!important"><span class="mx-u">${u}</span></div>`;
+ const li=(k,v,f,src,cls='')=>`<li${fa(f,src)}><span>${k}</span><b class="${cls}">${v}</b></li>`;
+ const chip=(c,t)=>`<span class="mx-ev ${c}">${t}</span>`;
+ const sh=x=>Math.round(x*100),split=s=>`${sh(s)}/${100-sh(s)}`;
+ const d=A?A.pay-X.pay:0,cheaper=X.baseCPA?1-X.perfCPA/X.baseCPA:0;
+ const head=!X.b.spend?`No placements are labeled Brand in the ${VN} version yet`:!A?`Add a Demand placement to compare this mix with all demand`:
+  d>=0?`A ${split(Z.share)} brand and demand mix makes demand leads ${pct0(cheaper)} cheaper and pays back ${d.toFixed(1)} months sooner than all demand`
+  :`At these assumptions, the ${split(Z.share)} brand and demand mix pays back ${(-d).toFixed(1)} months slower than all demand`;
+ const geo=M.geo===''||M.geo==null?null:(+M.geo)/100,gap=geo==null?0:Math.abs(X.bs-geo);
+ const fmtCh=v=>Math.abs(v)<1?'—':sgn(v)+money(Math.abs(v));
+ // sync prompt
+ const sB=Z.sB,diff=X.b.spend-sB,moved=Object.keys(bN).filter(id=>Math.abs((bN[id]||0)-(b0[id]||0))>=1).length;
+ const sync=Z.dirty?`<div class="mx-sync" role="status"><p><b>Buy Details needs updating.</b> It still holds a ${split(Z.saved)} split. This scenario is ${split(Z.share)}: brand placements ${sgn(diff)}${money(Math.abs(diff))}, demand ${sgn(-diff)}${money(Math.abs(diff))}, across ${moved} placements. Updating writes these as typed budgets in Buy Details, so the line items, agency sheet and flighting follow. Check platform minimums and flat-fee buys after.</p><button class="btn primary sm" id="mx-apply">Update Buy Details</button><button class="btn sm" id="mx-revert">Back to Buy Details split</button></div>`
+  :`<div class="mx-sync ok" role="status"><p>Buy Details matches this ${split(Z.share)} split.</p></div>`;
+ const cards=`<div class="mx-scroll"><div class="mx-stages" aria-hidden="true"><span>Spend</span><span>Upper funnel</span><span>Mid funnel</span><span>Lower funnel</span><span>Revenue</span></div>
+ <div class="mx-chain">
+  <article class="mx-node"><div class="mx-hd"><span class="eyebrow">1 · Brand buys</span><div class="mx-big"${fa(`${X.B.length?new Set(X.B.map(l=>l.p.id)).size:0} Brand placements in Buy Details${Z.dirty?', scaled to the scenario share':''}. ${money(X.b.spend)} of ${money(T)}.`,'Buy Details')}>${money(X.b.spend)}<small>${sh(Z.share)}% of ${money(T)} ${VN}</small></div></div>
+   <div class="mx-link"><div class="mx-lt">Source${chip('bom','Buy Details')}</div>${inp('freq','Planned frequency','×',0.5)}<p class="mx-src">Spend, rates and delivery come from placements labeled Brand in Buy Details.</p></div>
+   <ul class="mx-kv">${li('Impressions',compact(X.b.imp),'Σ brand placement delivery from Buy Details (CPM buys: budget ÷ rate × 1,000; other buys convert through the channel funnel)','Buy Details')}
+   ${li('Est. reach',compact(X.reach),`${compact(X.b.imp)} impressions ÷ ${M.freq} planned frequency`,'Planning assumption')}
+   ${li('Blended CPM',X.b.imp?money2(X.cpm):'—',`${money(X.b.spend)} ÷ ${compact(X.b.imp)} impressions × 1,000`)}
+   ${li('Clicks',compact(X.b.clk),'Impressions × channel CTR benchmark','Benchmarks tab')}
+   ${li('Landing page visits',compact(X.b.lpv),'Clicks × channel landing rate','Benchmarks tab')}
+   ${li('Video views',X.b.views?compact(X.b.views):'—','CPV buys: budget ÷ rate','Buy Details')}</ul></article>
+  <article class="mx-node"><div class="mx-hd"><span class="eyebrow">2 · Brand lift</span><div class="mx-big"${fa(`${M.studyLift} pts × (${money(X.b.spend)} ÷ ${money(Z.ss)}) ^ ${M.ex}. Type a target lift and the brand share moves to buy it: spend = ${money(Z.ss)} × (lift ÷ ${M.studyLift}) ^ (1 ÷ ${M.ex}).`,'Lift study read; response is a benchmark')}>+${X.aw.toFixed(1)} pts<small>aided awareness, exposed vs control</small></div></div>
+   <div class="mx-link"><div class="mx-lt">Link: spend → lift${chip('assumed','Assumed: replace with your lift study read')}</div>
+    <div class="mx-field"><label for="mx-target">Target awareness lift</label><input class="rate" id="mx-target" type="number" min="0" step="0.5" value="${X.aw.toFixed(1)}" style="width:64px!important"><span class="mx-u">pts</span></div>
+    ${inp('studyLift','Study read','pts',0.5)}<div class="mx-field"><label for="mx-studySpend">at brand spend of</label><input class="rate mx-in" id="mx-studySpend" type="number" min="0" step="10000" data-k="studySpend" value="${+M.studySpend?esc(M.studySpend):''}" placeholder="${Math.round(Z.ss)}" style="width:96px!important"><span class="mx-u">$</span></div>${inp('ex','Lift response to spend','exp',0.05)}
+    <p class="mx-src">Enter the latest brand lift readout and the brand spend it ran on (blank uses the Medium version's brand spend).</p></div>
+   <ul class="mx-kv">${li('Consideration lift','+'+X.cons.toFixed(1)+' pts',`${M.consLift} pts study read × ${X.k.toFixed(2)} (moves with awareness)`,'Lift study')}
+   ${li('Ad recall lift','+'+X.rec.toFixed(1)+' pts',`${M.recLift} pts study read × ${X.k.toFixed(2)}`,'Lift study')}
+   ${li('Aided awareness',`${M.baseAw}% → ${(+M.baseAw+X.aw).toFixed(1)}%`,`${M.baseAw}% baseline + ${X.aw.toFixed(1)} pts lift`,'Brand tracker')}
+   ${li('Awareness per $100K',X.b.spend?'+'+(X.aw/(X.b.spend/1e5)).toFixed(2)+' pts':'—',`${X.aw.toFixed(1)} pts ÷ (${money(X.b.spend)} ÷ $100K)`)}</ul>
+   <div class="mx-row2">${inp('consLift','Consideration read','pts',0.5)}${inp('recLift','Ad recall read','pts',0.5)}${inp('baseAw','Awareness baseline','%',1)}</div></article>
+  <article class="mx-node"><div class="mx-hd"><span class="eyebrow">3 · Demand signals</span><div class="mx-big"${fa(`${X.aw.toFixed(1)} pts awareness × ${M.el}% branded search per point`,'Benchmark until a geo holdout reads out')}>${sgn(X.bs)}${pct0(Math.abs(X.bs))}<small>branded search volume</small></div></div>
+   <div class="mx-link"><div class="mx-lt">Link: lift → demand${chip('assumed','Assumed: replace with a geo holdout read')}</div>${inp('el','Branded search per awareness pt','%',0.1)}${inp('bl','Brand-driven leads today','/flight',50,80)}${inp('geo','Geo holdout read (blank if not run)','%',1)}
+    <p class="mx-src">Brand-driven leads are the leads that come in from branded search and direct traffic in a normal flight, from your CRM.</p></div>
+   <ul class="mx-kv">${li('Branded search',sgn(X.bs)+pct0(Math.abs(X.bs)),`${X.aw.toFixed(1)} × ${M.el}%`,'Benchmark','up')}
+   ${li('Direct traffic',sgn(X.bs)+pct0(Math.abs(X.bs*0.6)),'Branded search lift × 0.6','Planning ratio','up')}
+   ${li('Organic sign-ups',sgn(X.bs)+pct0(Math.abs(X.bs*0.45)),'Branded search lift × 0.45','Planning ratio','up')}
+   ${li('Extra brand-driven leads','+'+compact(X.brandLeads),`${compact(+M.bl)} brand-driven leads × ${pct0(X.bs)}`,'CRM')}</ul>
+   ${geo==null?`<div class="mx-check">Run a geo holdout to check this link. Enter its branded search read above.</div>`:`<div class="mx-check ${gap<=0.05?'ok':'warn'}">${gap<=0.05?`Geo holdout read +${Math.round(geo*100)}% branded search. The model is within 5 pts.`:`Geo holdout read +${Math.round(geo*100)}%; the model says ${pct0(X.bs)}. Recheck the benchmark.`}</div>`}</article>
+  <article class="mx-node"><div class="mx-hd"><span class="eyebrow">4 · Pipeline</span><div class="mx-big"${fa(`${money(X.d.spend)} demand spend ÷ ${compact(X.dLeads)} demand leads. Demand leads = ${compact(X.d.leads)} projected in Buy Details × (1 + ${M.sh}% reached by brand × ${M.cu}% exposed uplift).`,'Buy Details projections')}>${X.perfCPA?money(X.perfCPA):'—'}<small>demand CPL, ${X.baseCPA?money(X.baseCPA):'—'} without brand</small></div></div>
+   <div class="mx-link"><div class="mx-lt">Link: demand → pipeline${chip('assumed','Assumed')}</div>${inp('sh','Demand audience also reached by brand','%',5)}${inp('cu','Exposed conversion uplift','%',1)}${inp('ou','Exposed lead → SQL uplift','%',1)}
+    <p class="mx-src">Exposed vs unexposed from a CRM match. Confirm with a conversion lift test.</p></div>
+   <ul class="mx-kv">${li('Leads',compact(X.leads),`${compact(X.dLeads)} demand + ${compact(X.b.leads)} from brand placements + ${compact(X.brandLeads)} brand-driven`)}
+   ${li('Blended CPL (all media)',X.leads?money(X.bCPA):'—',`${money(X.T)} media ÷ ${compact(X.leads)} leads`)}
+   ${li('SQLs',n1(X.opps),`Demand leads × ${pct0(X.r)} × (1 + ${M.sh}% × ${M.ou}%) + other leads × ${pct0(X.r)}. ${pct0(X.r)} = lead → MQL ${pct0(P.mql)} × MQL → SQL ${pct0(P.sql)}`,'Flighting pipeline rates')}
+   ${li('Cost per SQL',X.opps?money(X.cpo):'—',`${money(X.T)} media ÷ ${n1(X.opps)} SQLs`)}</ul></article>
+  <article class="mx-node"><div class="mx-hd"><span class="eyebrow">5 · Revenue &amp; payback</span><div class="mx-big"${fa(`${money(X.cac)} CAC ÷ ${money(X.gpm)} gross profit a month. CAC = ${money(X.allIn)} all-in ÷ ${n1(X.cust)} customers.`,'Growth Plan inputs')}>${X.pay?X.pay.toFixed(1)+' mo':'—'}<small>CAC payback</small></div></div>
+   <div class="mx-link"><div class="mx-lt">Link: pipeline → revenue${chip('bom','Growth Plan')}</div><p class="mx-src">ACV ${money(G.acv)}, gross margin ${G.gm}%, SQL → customer ${pct0(P.win)}, agency fee, creative and tools all come from the Growth Plan and Flighting tabs.</p></div>
+   <ul class="mx-kv">${li('Customers',n1(X.cust),`${n1(X.opps)} SQLs × ${pct0(P.win)}`,'Flighting pipeline rates')}
+   ${li('Pipeline',money(X.pipe),`${n1(X.opps)} SQLs × ${money(G.acv)} ACV`,'Growth Plan')}
+   ${li('First-year revenue',money(X.rev),`${n1(X.cust)} customers × ${money(G.acv)} ACV`,'Growth Plan')}
+   ${li('Payback vs all demand',A&&A!==X?(d>=0?d.toFixed(1)+' mo faster':(-d).toFixed(1)+' mo slower'):'—',A?`${A.pay.toFixed(1)} mo all demand − ${X.pay.toFixed(1)} mo this mix`:'Needs at least one Demand placement','Comparison below',d>=0?'up':'dn')}</ul></article>
+ </div></div>`;
+ const row=(n,a,b,fmt,better)=>{if(!A)return '';const df=b-a,good=better==='low'?df<0:df>0;return `<tr><td>${n}</td><td class="n">${fmt(a)}</td><td class="n">${fmt(b)}</td><td class="n ${a?good?'mx-up':'mx-dn':''}">${a?sgn(df)+Math.abs(Math.round(df/a*100))+'%':'—'}</td></tr>`};
+ const tile=(v,k,f)=>`<div class="tile"${fa(f)}><span class="v">${v}</span><span class="k">${k}</span></div>`;
+ const cmp=A&&A!==X?`<div class="tiles mx-tiles">${tile(pct0(cheaper),'Cheaper demand leads',`1 − ${money(X.perfCPA)} ÷ ${money(X.baseCPA)} demand CPL without brand`)}${tile(pct0(1-X.cpo/A.cpo),'Lower cost per SQL vs all demand',`1 − ${money(X.cpo)} ÷ ${money(A.cpo)}`)}${tile((d>=0?'':'−')+Math.abs(d).toFixed(1)+' mo','Faster CAC payback',`${A.pay.toFixed(1)} mo all demand − ${X.pay.toFixed(1)} mo this mix`)}${tile(money(X.rev-A.rev),'More first-year revenue',`${money(X.rev)} − ${money(A.rev)}`)}</div>
+  <div class="tscroll"><table><thead><tr><th>Outcome</th><th class="n">100% demand</th><th class="n">${split(Z.share)} brand / demand</th><th class="n">Difference</th></tr></thead><tbody>
+  <tr><td>Demand spend</td><td class="n">${money(A.d.spend)}</td><td class="n">${money(X.d.spend)}</td><td class="n">—</td></tr><tr><td>Brand spend</td><td class="n">${money(A.b.spend)}</td><td class="n">${money(X.b.spend)}</td><td class="n">—</td></tr>
+  ${row('Leads',A.leads,X.leads,compact,'high')}${row('Blended CPL (all media)',A.bCPA,X.bCPA,money,'low')}${row('SQLs',A.opps,X.opps,n1,'high')}${row('Cost per SQL',A.cpo,X.cpo,money,'low')}${row('Customers',A.cust,X.cust,n1,'high')}${row('CAC (all-in)',A.cac,X.cac,money,'low')}${row('CAC payback (months)',A.pay,X.pay,v=>v.toFixed(1),'low')}${row('First-year revenue',A.rev,X.rev,money,'high')}</tbody></table></div>`
+  :`<div class="note">${X.b.spend?'Label at least one placement Demand in Buy Details to compare.':'Label at least one placement Brand in Buy Details to compare.'}</div>`;
+ // compact Buy Details: role, saved vs scenario budget, and what each placement returns
+ const pls=[];CH.forEach(c=>c.pl.forEach(p=>{if(b0[p.id]==null&&bN[p.id]==null)return;const ls=X.R.lines.filter(l=>l.p.id===p.id),o={imp:0,clk:0,lpv:0,leads:0};
+  ls.forEach(l=>{const f=lineFun(l);if(f)for(const k in o)o[k]+=f[k]});if(roleOf(p)!=='brand')o.leads*=1+X.sh*X.cu;pls.push({c,p,o,sv:b0[p.id]||0,nw:bN[p.id]||0})}));
+ const ot={imp:sum(pls.map(r=>r.o.imp)),clk:sum(pls.map(r=>r.o.clk)),lpv:sum(pls.map(r=>r.o.lpv)),leads:sum(pls.map(r=>r.o.leads))};
+ const bd=`<div class="tscroll"><table><thead><tr><th>Channel</th><th>Placement</th><th>Stage</th><th>Buy</th><th>Role</th><th class="n">In Buy Details</th><th class="n">Scenario</th><th class="n">Change</th><th class="n">Impr.</th><th class="n">Clicks</th><th class="n">LP visits</th><th class="n">Leads</th><th class="n">CPL</th></tr></thead><tbody>
+  ${pls.map(r=>{const ch=r.nw-r.sv;return `<tr><td>${esc(r.c.name)}</td><td style="min-width:180px">${esc(r.p.name)}</td><td>${stageChip(r.p.stage)}</td><td class="m">${esc(r.p.buy)}</td><td>${roleSelect(r.p.id)}</td><td class="n">${money(r.sv)}</td><td class="n">${money(r.nw)}</td><td class="n ${Math.abs(ch)<1?'':ch>0?'mx-up':'mx-dn'}">${fmtCh(ch)}</td><td class="n">${compact(r.o.imp)}</td><td class="n">${compact(r.o.clk)}</td><td class="n">${compact(r.o.lpv)}</td><td class="n">${r.o.leads>=0.5?compact(r.o.leads):'—'}</td><td class="n">${r.o.leads>=0.5?money(r.nw/r.o.leads):'—'}</td></tr>`}).join('')}
+  <tr class="tot"><td>Total</td><td>${pls.length} placements</td><td></td><td></td><td>${split(Z.share)}</td><td class="n">${money(sum(pls.map(r=>r.sv)))}</td><td class="n">${money(sum(pls.map(r=>r.nw)))}</td><td></td><td class="n">${compact(ot.imp)}</td><td class="n">${compact(ot.clk)}</td><td class="n">${compact(ot.lpv)}</td><td class="n">${compact(ot.leads)}</td><td class="n">${ot.leads?money(sum(pls.map(r=>r.nw))/ot.leads):'—'}</td></tr>
+  <tr><td colspan="11">Brand-driven leads (branded search and direct, card 3)</td><td class="n">+${compact(X.brandLeads)}</td><td></td></tr></tbody></table></div>`;
+ // brand delivery and exposed vs unexposed
+ const byP={};X.B.forEach(l=>{const f=lineFun(l)||{},o=byP[l.p.id]=byP[l.p.id]||{c:l.c,p:l.p,spend:0,imp:0,clk:0,lpv:0,views:0};o.spend+=l.budget;['imp','clk','lpv','views'].forEach(k=>o[k]+=f[k]||0)});
+ const dl=Object.values(byP);
+ const dlv=`<div class="tscroll"><table><thead><tr><th>Brand placement</th><th class="n">Spend</th><th class="n">Impr.</th><th class="n">Est. reach</th><th class="n">CPM</th><th class="n">Clicks</th><th class="n">LP visits</th><th class="n">Video views</th></tr></thead><tbody>
+  ${dl.map(o=>`<tr><td>${esc(o.c.name)} · ${esc(o.p.name)}</td><td class="n">${money(o.spend)}</td><td class="n">${compact(o.imp)}</td><td class="n">${compact(o.imp/Math.max(1,+M.freq||1))}</td><td class="n">${o.imp?money2(o.spend/o.imp*1000):'—'}</td><td class="n">${compact(o.clk)}</td><td class="n">${compact(o.lpv)}</td><td class="n">${o.views?compact(o.views):'—'}</td></tr>`).join('')||`<tr><td colspan="8" class="note">No Brand placements in this version.</td></tr>`}
+  ${dl.length?`<tr class="tot"><td>Total</td><td class="n">${money(X.b.spend)}</td><td class="n">${compact(X.b.imp)}</td><td class="n">${compact(X.reach)}</td><td class="n">${X.b.imp?money2(X.cpm):'—'}</td><td class="n">${compact(X.b.clk)}</td><td class="n">${compact(X.b.lpv)}</td><td class="n">${X.b.views?compact(X.b.views):'—'}</td></tr>`:''}</tbody></table></div>`;
+ const er=(n,a,b,f,better)=>{const g=better==='low'?b<a:b>a;return `<tr><td>${n}</td><td class="n">${f(a)}</td><td class="n">${f(b)}</td><td class="n ${g?'mx-up':'mx-dn'}">${a?sgn(b/a-1)+Math.abs(Math.round((b/a-1)*100))+'%':'—'}</td></tr>`};
+ const lpCvr=X.d.lpv?X.d.leads/X.d.lpv:0,p1=v=>(v*100).toFixed(1)+'%';
+ const exp=`<div class="tscroll"><table><thead><tr><th>Metric</th><th class="n">Unexposed</th><th class="n">Exposed</th><th class="n">Change</th></tr></thead><tbody>
+  ${X.d.leads?er('Landing page → lead',lpCvr,lpCvr*(1+X.cu),p1,'high')+er('Demand CPL',X.baseCPA,X.baseCPA/(1+X.cu),money,'low'):''}${er('Lead → SQL',X.r,X.r*(1+X.ou),p1,'high')}${X.d.leads?er('Cost per SQL',X.baseCPA/X.r,X.baseCPA/(1+X.cu)/(X.r*(1+X.ou)),money,'low'):''}${er('Aided awareness',M.baseAw/100,(+M.baseAw+X.aw)/100,v=>Math.round(v*100)+'%','high')}</tbody></table></div>`;
+ const studies=[['Platform brand lift (YouTube, LinkedIn, Meta)','1 → 2','Ad recall, awareness, consideration','Platform exposed vs held-out control, in-feed survey','±2–3 pts','Weeks 2–8'],
+  ['Geo holdout','2 → 3','Branded search, direct traffic, organic sign-ups','Matched test and control markets, brand dark in control','About 8% branded search','8 weeks mid-flight'],
+  ['Conversion lift','3 → 4','Conversion rate, CPL, lead → SQL rate','CRM match of exposed vs unexposed accounts, 90-day window','About 10% conversion rate','Rolling, from week 6'],
+  ['Brand tracker','Baseline','Aided awareness in the target audience','Quarterly survey of the ICP (n ≈ 400)','±4 pts','Before launch, mid-flight, after']];
+ return `<div class="panel mx" style="display:flex;flex-direction:column;gap:16px">
+ <div><div class="eyebrow">${esc(VN)} version · media mix outcomes</div><h2 style="font-size:20px;margin-top:2px">${esc(head)}</h2>
+  <div class="note">How the brand share of the mix makes the demand share work harder: brand placements build lift, lift shows up as demand, and demand converts better into pipeline and payback. Type over any box and everything updates. Hover or tap a number with a dotted label to see how it's calculated. Planning estimates, not guarantees.</div></div>
+ <div class="mx-mix"><label for="mx-sp">Brand share of budget</label><input id="mx-sp" type="range" min="0" max="90" step="1" value="${sh(Z.share)}" aria-label="Brand share slider"><input class="rate" id="mx-spn" type="number" min="0" max="90" step="1" value="${sh(Z.share)}" aria-label="Brand share percent" style="width:64px!important"><span class="mx-u">%</span><span class="mx-split" id="mx-split">Brand ${money(X.b.spend)} · Demand ${money(X.d.spend)}</span></div>
+ ${sync}
+ <div class="mx-legend"><span>Evidence for each link:</span>${chip('bom','From the plan')}${chip('measured','Measured')}${chip('bench','Benchmark')}${chip('assumed','Assumed')}</div>
+ ${cards}
+ <div><h2 style="font-size:18px">Same ${money(T)}, two mixes</h2><div class="note">Brand earns its place only if the mix beats putting those dollars into the demand placements. The 100% demand column reruns the plan with every Brand placement at $0 and the Demand placements scaled up, so diminishing returns come from the channel saturation curves.</div></div>
+ ${cmp}
+ <div><h2 style="font-size:18px">Buy Details by role</h2><div class="note">Role, saved budget and what each placement returns at the scenario spend. Rates, audience, targeting, markets and KPIs stay in Buy Details. Brand placement leads are their own direct-response leads; brand's wider effect shows up in the demand rows and the brand-driven row.</div>
+  <div class="btns" style="margin:8px 0 10px"><button class="btn sm" id="mx-open-bd">Open full Buy Details</button><button class="btn sm" data-mx-x="x-xlsx">Download .xlsx</button><button class="btn sm" data-mx-x="x-csv">CSV</button><button class="btn sm" data-mx-x="x-copy">Copy for Sheets</button></div>${bd}</div>
+ <div class="mx-two"><div><h2 style="font-size:18px">Upper funnel delivery</h2><div class="note">Brand placements at the scenario spend. Reach uses the planned frequency in card 1 until platform reach reporting is in.</div>${dlv}</div>
+  <div><h2 style="font-size:18px">Exposed vs unexposed</h2><div class="note">Unexposed is the plan's projected rates. Exposed applies the uplifts in card 4.</div>${exp}</div></div>
+ <div><h2 style="font-size:18px">Lift study plan</h2><div class="note">Each study replaces one assumption in the chain. When a readout lands, type it into its card.</div>
+  <div class="tscroll"><table><thead><tr><th>Study</th><th>Proves link</th><th>Metrics</th><th>Design</th><th>Detectable effect</th><th>Timing</th></tr></thead><tbody>${studies.map(r=>`<tr><td><strong>${r[0]}</strong></td>${r.slice(1).map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>
+ </div>`}
+function wireMix(R0){const v=$('#view'),Z=mixModel(R0),T=TIERS[Z.t];
+ const setShare=x=>{UI.mixShare=UI.mixShare||{};UI.mixShare[T]=Math.max(0,Math.min(90,+x||0))/100;changed()};
+ v.querySelectorAll('.mx-in').forEach(el=>el.onchange=()=>{S.mix=S.mix||{};const k=el.dataset.k;S.mix[k]=k==='geo'&&el.value===''?'':Math.max(0,+el.value||0);if(k==='studySpend'&&!+el.value)delete S.mix.studySpend;changed()});
+ const sp=$('#mx-sp'),spn=$('#mx-spn');
+ if(sp){sp.oninput=()=>{spn.value=sp.value;$('#mx-split').textContent=`Brand ${money(Z.T*sp.value/100)} · Demand ${money(Z.T*(100-sp.value)/100)}`};sp.onchange=()=>setShare(sp.value);spn.onchange=()=>setShare(spn.value)}
+ const tg=$('#mx-target');if(tg)tg.onchange=()=>{const M=mixOf(),lift=Math.max(0,+tg.value||0),spend=Z.ss*Math.pow(lift/(M.studyLift||1),1/Math.max(.05,M.ex));setShare(Z.T?spend/Z.T*100:0)};
+ const ap=$('#mx-apply');if(ap)ap.onclick=()=>{if(Z.pins)applyPins(S,Z.t,Z.pins);if(UI.mixShare)delete UI.mixShare[T];changed()};
+ const rv=$('#mx-revert');if(rv)rv.onclick=()=>{if(UI.mixShare)delete UI.mixShare[T];changed()};
+ const ob=$('#mx-open-bd');if(ob)ob.onclick=()=>{UI.tab='assump';UI.bdView='pl';save();renderOut();window.scrollTo({top:$('#tabs').getBoundingClientRect().top+scrollY-12})};
+ v.querySelectorAll('[data-mx-x]').forEach(b=>b.onclick=()=>$('#'+b.dataset.mxX)?.click())}
+function mixAOA(R0){const Z=mixModel(R0),{X,A,M}=Z,P=pipe(),r2=v=>Math.round(v*100)/100;
+ const a=[['MEDIA MIX OUTCOMES · '+TIERNAME[Z.t]],[],['Brand share of budget %',Math.round(Z.share*100)],['Brand spend',Math.round(X.b.spend)],['Demand spend',Math.round(X.d.spend)],[],
+  ['1 · Brand buys'],['Impressions',Math.round(X.b.imp)],['Est. reach',Math.round(X.reach)],['Blended CPM',r2(X.cpm)],['Clicks',Math.round(X.b.clk)],['Landing page visits',Math.round(X.b.lpv)],[],
+  ['2 · Brand lift'],['Awareness lift (pts)',r2(X.aw)],['Consideration lift (pts)',r2(X.cons)],['Ad recall lift (pts)',r2(X.rec)],['Study read (pts)',M.studyLift],['Study brand spend',Math.round(Z.ss)],['Lift response exponent',M.ex],[],
+  ['3 · Demand signals'],['Branded search lift %',r2(X.bs*100)],['Extra brand-driven leads',Math.round(X.brandLeads)],[],
+  ['4 · Pipeline'],['Leads',Math.round(X.leads)],['Demand CPL',r2(X.perfCPA)],['Demand CPL without brand',r2(X.baseCPA)],['Blended CPL',r2(X.bCPA)],['SQLs',r2(X.opps)],['Cost per SQL',r2(X.cpo)],[],
+  ['5 · Revenue & payback'],['Customers',r2(X.cust)],['Pipeline',Math.round(X.pipe)],['First-year revenue',Math.round(X.rev)],['CAC (all-in)',Math.round(X.cac)],['CAC payback (months)',r2(X.pay)],[]];
+ if(A&&A!==X)a.push(['Comparison','100% demand','This mix'],['Leads',Math.round(A.leads),Math.round(X.leads)],['SQLs',r2(A.opps),r2(X.opps)],['Customers',r2(A.cust),r2(X.cust)],['CAC (all-in)',Math.round(A.cac),Math.round(X.cac)],['CAC payback (months)',r2(A.pay),r2(X.pay)],['First-year revenue',Math.round(A.rev),Math.round(X.rev)],[]);
+ const b0=plBudgets(R0),bN=plBudgets(X.R);a.push(['Channel','Placement','Role','In Buy Details','Scenario']);
+ CH.forEach(c=>c.pl.forEach(p=>{if(b0[p.id]==null&&bN[p.id]==null)return;a.push([c.name,p.name,ROLENAME[roleOf(p)],Math.round(b0[p.id]||0),Math.round(bN[p.id]||0)])}));
+ a.push([],['Assumptions: lead → SQL',r2(P.mql*P.sql*100)+'%','Exposed conversion uplift',M.cu+'%','Exposed lead → SQL uplift',M.ou+'%','Reached by brand',M.sh+'%']);return a}
+// Formula popovers on any [data-f]: hover on desktop, tap on phones, Esc closes
+(function(){const pop=document.createElement('div');pop.className='fpop';pop.id='fpop';pop.hidden=true;pop.setAttribute('role','tooltip');let pinned=null,cur=null;
+ const show=el=>{cur=el;pop.innerHTML=`<div class="fpop-f">${esc(el.dataset.f)}</div>${el.dataset.fs?`<div class="fpop-s">Source: ${esc(el.dataset.fs)}</div>`:''}`;pop.hidden=false;
+  const r=el.getBoundingClientRect(),w=pop.offsetWidth,h=pop.offsetHeight;let y=r.bottom+8;if(y+h>innerHeight-8)y=r.top-h-8;
+  pop.style.left=Math.min(Math.max(8,r.left),innerWidth-w-8)+'px';pop.style.top=Math.max(8,y)+'px'};
+ const hide=()=>{pop.hidden=true;pinned=cur=null};
+ const ready=()=>document.body.appendChild(pop);if(document.body)ready();else document.addEventListener('DOMContentLoaded',ready);
+ document.addEventListener('mouseover',e=>{const el=e.target.closest?.('[data-f]');if(pinned)return;if(el)show(el);else if(cur)hide()});
+ document.addEventListener('focusin',e=>{const el=e.target.closest?.('[data-f]');if(el)show(el)});
+ document.addEventListener('click',e=>{const el=e.target.closest?.('[data-f]');if(!el||e.target.closest('input,select,button')){if(!e.target.closest?.('.fpop'))hide();return}if(pinned===el){hide();return}pinned=el;show(el)});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});addEventListener('scroll',()=>{if(cur&&!pop.hidden)show(cur)},{passive:true})})();
+
 const TGT_METHODS=['Job title','Skills','Predictive','TAL','Industry','Interests','Keywords','Retargeting','Contextual','Geo-fence'];
 function tgtDefault(c,p){const id=p.id;if(c.id==='google'||c.id==='baidu'||(c.id==='naver'&&/_s$/.test(id)))return 'Keywords';
  if(/_rt$/.test(id))return 'Retargeting';if(c.id==='abm')return 'TAL';if(c.id==='events')return 'Geo-fence';
@@ -732,7 +933,7 @@ const TEST_LIB={
   hyp:'If the image shows a real customer instead of the product UI, CTR improves because people stop for faces.',kpi:ctrK(a),guard:guardOf(a),rule:'Winning visual style carries into the next round’s masters.'})},
  hook:{name:'Video hook (first 5s)',fitsTxt:'Video lines',fits:isVid,make:a=>({type:'Creative',variable:'Opening hook (first 5s)',cells:['A product UI','B customer face','C headline stat'],
   hyp:'If the first 5 seconds show a customer face instead of the product UI, more people keep watching because faces hold attention.',kpi:['View rate','imp',funOf(a.c.id).viewRate],guard:guardOf(a),rule:'Winning hook opens every video cut next round.'})},
- lp:{name:'Landing page',fitsTxt:'Any line that drives clicks',fits:a=>['CPM','CPC','CPV'].includes(a.p.buy),make:a=>({type:'Landing page',variable:'Landing page',cells:['A product page','B cost-of-downtime calculator'],
+ lp:{name:'Landing page',fitsTxt:'Any line that drives clicks',fits:a=>['CPM','CPC','CPV'].includes(a.p.buy),make:a=>({type:'Landing page',variable:'Landing page',cells:['A product page','B ROAS calculator'],
   hyp:'If clicks land on an interactive calculator instead of the product page, more visitors sign up because they see their own numbers.',kpi:['Visit → sign-up rate','lpv',funOf(a.c.id).cvr],guard:guardOf(a),rule:'Winning page becomes the default destination for this line.'})},
  offer:{name:'Offer (demo vs report)',fitsTxt:'Lead gen lines',fits:a=>a.p.buy==='CPL',make:a=>({type:'Offer',variable:'Offer',cells:['A demo request','B gated report'],
   hyp:'If the form offers the report instead of a demo, more people complete it because a report asks for less commitment.',kpi:['Form completion','opens',funOf(a.c.id).leadForm],proxy:['CTR','imp',funOf(a.c.id).ctr],guard:'SQL rate in CRM',rule:'Winner becomes the default offer; keep the loser only where its SQL rate is higher.'})},
@@ -771,7 +972,7 @@ function testPlan(R,edits){
   const d=mk(x.tpl,a,Math.min(defs.filter(d=>d.a.p.id===x.pid).length,3));d.added=true;
   if(x.hyp)d.hyp=x.hyp;if(Array.isArray(x.cells)&&x.cells.length>1)d.cells=x.cells.slice(0,4).map((c,i)=>String.fromCharCode(65+i)+' '+String(c).replace(/^[A-D][\s.:)-]+/,''));if(x.variable)d.variable=x.variable;d.custom=!!(x.hyp||x.cells);defs.push(d)});
  // run each line-based test
- const tests=[],total=+S.budgets[T]||0,held=(S.testShare?.[T]??TEST_SHARE[R.tier])/100;
+ const tests=[],total=+S.budgets[T]||0,held=(S.testShare?.[T]??Math.round(splitOf().tl*100))/100;
  const topOf=a=>{const mk={};a.lines.forEach(l=>mk[l.m.id]=(mk[l.m.id]||0)+l.budget);return Object.keys(mk).sort((x,y)=>mk[y]-mk[x])};
  const base=d=>sum(d.a.lines.filter(l=>l.m.id===topOf(d.a)[0]).map(l=>l.budget))*W/fw,bs=sum(defs.map(base)),k=bs?Math.max(1,held*total/bs):1;
  const deliver=(a,scope,weeks,unit)=>{const ls=a.lines.filter(l=>scope.includes(l.m.id)),cap=sum(ls.map(l=>l.budget))*0.5,raw=sum(ls.map(l=>l.budget))*weeks/fw,kk=raw?Math.min(k,Math.max(1,cap/raw)):1;
@@ -931,14 +1132,14 @@ function syncBudgetFields(R){
  const mb=sum(S.markets.map(m=>m.on&&ws?Math.round(total*(+m.weight||0)/ws):0)),mw=$('#mk-tot-w'),mbe=$('#mk-tot-b');
  if(mw){mw.textContent=(+ws.toFixed(1))+'%';mw.className='n'+(Math.abs(ws-100)>0.5?' bad':'');mw.title=Math.abs(ws-100)>0.5?'Weights don\'t add to 100%, so they are treated as shares':''}
  if(mbe){mbe.textContent=money(mb);mbe.className='n'+(Math.abs(mb-total)>on.length?' bad':'');mbe.title='Should equal the '+TIERNAME[t]+' budget: '+money(total)}
- const Rs=[0,1,2].map(i=>R&&R.tier===i?R:compute(i)),tots=[0,1,2].map(i=>+S.budgets[TIERS[i]]||0),cbs=Rs.map(Ri=>{const o={};Ri.lines.forEach(l=>o[l.c.id]=(o[l.c.id]||0)+l.budget);return o});
+ const Rs=[0,1,2].map(i=>R&&R.tier===i?R:compute(i)),tots=[0,1,2].map(i=>mediaBudget(i)),cbs=Rs.map(Ri=>{const o={};Ri.lines.forEach(l=>o[l.c.id]=(o[l.c.id]||0)+l.budget);return o});
  CH.forEach(c=>[0,1,2].forEach(i=>{const el=$(`#ch-b-${c.id}-${i}`);if(!el)return;const v=cbs[i][c.id],pin=pinOf(c.id,i);el.disabled=false;el.classList.toggle('pinned',pin!=null&&S.channels[c.id].on);
   el.placeholder='0';el.title=pin!=null?'You set this. Clear it to let it share the rest.':!S.channels[c.id].on?'Type a budget to turn this channel on':v?'Shares what’s left after the channels you typed':'Not in this version’s markets yet';if(el!==document.activeElement)el.value=v?Math.round(v):''}));
  [0,1,2].forEach(i=>{const cs=sum(Object.values(cbs[i])),d=cs-tots[i],bE=$('#ch-bud-'+i),dE=$('#ch-diff-'+i);if(bE)bE.textContent=compact(tots[i]).replace(/^/,'$');
   if(dE){const ok=Math.abs(d)<=1;dE.textContent=ok?'✓ matches':(d>0?'+':'−')+compact(Math.abs(d)).replace(/^/,'$');dE.className='n '+(ok?'good':'bad');dE.title=ok?'Channels add up to the '+TIERNAME[i]+' budget':money(Math.abs(d))+(d<0?' not placed':' over')+' the '+TIERNAME[i]+' budget'}});
  [0,1,2].forEach(i=>{const e=$('#ch-tot-b-'+i);if(!e)return;const cs=sum(Object.values(cbs[i]));e.textContent=compact(cs).replace(/^/,'$');e.className='n'+(Math.abs(cs-tots[i])>1?' bad':'');e.title=money(cs)+' · should equal the '+TIERNAME[i]+' budget: '+money(tots[i])});
  const empty=S.markets.filter(m=>m.on&&+m.weight>0&&!Rs.some(Ri=>Ri.lines.some(l=>l.m.id===m.id)));
- const ct=$('#ch-tot');if(ct)ct.innerHTML=`<span>Each column should match its version: ${tots.map((v,i)=>TIERNAME[i]+' '+money(v)).join(' · ')}</span>`+(empty.length?`<span style="display:block;margin-top:4px;color:var(--flag)">${empty.map(m=>m.name).join(', ')} ${empty.length>1?'have':'has'} no checked channel that runs there, so ${empty.length>1?'their':'its'} share goes to the other markets. Check a channel that runs there, or turn the market off in section 3.</span>`:'');
+ const ct=$('#ch-tot');if(ct)ct.innerHTML=`<span>Each column should match its version after the test &amp; learn reserve: ${tots.map((v,i)=>TIERNAME[i]+' '+money(v)).join(' · ')}</span>`+(empty.length?`<span style="display:block;margin-top:4px;color:var(--flag)">${empty.map(m=>m.name).join(', ')} ${empty.length>1?'have':'has'} no checked channel that runs there, so ${empty.length>1?'their':'its'} share goes to the other markets. Check a channel that runs there, or turn the market off in section 3.</span>`:'');
 }
 function setMarketBudget(i,x){
  const t=bTier(),total=+S.budgets[TIERS[t]]||0,m=S.markets[i];if(!total||!m.on)return;
@@ -981,12 +1182,17 @@ $('#btn-reset').onclick=()=>{S=exampleState();renderInputs();changed();setStatus
 
 /* ==================== OUTPUT RENDERING ==================== */
 let T_=null;function changed(){save();clearTimeout(T_);T_=setTimeout(()=>{renderOut()},120)}
-const TABS=[['summary','Paid Media Summary'],['growth','Growth Plan'],['bom','BOM'],['spec','Spec Sheet for Creative Studio'],['assets','Assets'],['flight','Flighting & Projected Outcomes'],['assump','Buy Details'],['tests','Test Plan'],['tagging','Spec & Trafficking Sheet for Agency']];
-function renderSeg(){
+const TABS=[['summary','Paid Media Summary'],['growth','Growth Plan'],['mix','Media Mix Outcomes'],...(typeof BG_TABS!=='undefined'?BG_TABS:[]),['bom','BOM'],['spec','Spec Sheet for Creative Studio'],['assets','Assets'],['flight','Flighting & Projected Outcomes'],['assump','Buy Details'],['tests','Test Plan'],['tagging','Spec Sheet & Tagging for Agency']];
+// Tabs sit under two headers; a tab not listed here falls into Strategy & Planning
+const TAB_EXEC=['bom','spec','assets','flight','assump','tests','tagging'];
+const TAB_GROUPS_FN=()=>[['Strategy &amp; Planning',TABS.map(t=>t[0]).filter(k=>!TAB_EXEC.includes(k))],['Execution',TAB_EXEC]];
+let TAB_GROUPS=[];
+function renderSeg(){TAB_GROUPS=TAB_GROUPS_FN();
  $('#ver-seg').innerHTML=TIERNAME.map((n,i)=>`<button aria-pressed="${UI.tier===i}" data-t="${i}">${n}<span class="amt">${compact(+S.budgets[TIERS[i]]||0).replace(/^/,'$')}</span></button>`).join('')+`<button aria-pressed="${UI.tier===3}" data-t="3">Compare<span class="amt">all three</span></button>`;
  $('#ver-seg').querySelectorAll('button').forEach(b=>b.onclick=()=>{UI.tier=+b.dataset.t;save();renderOut()});
  const ord=UI.tabOrder||[],tabs=TABS.slice().sort((a,b)=>{const i=ord.indexOf(a[0]),j=ord.indexOf(b[0]);return (i<0?99:i)-(j<0?99:j)});
- $('#tabs').innerHTML=UI.tier===3?'':tabs.map(([k,n])=>`<button role="tab" aria-selected="${UI.tab===k}" data-k="${k}" draggable="true" title="Drag to reorder">${n}</button>`).join('');
+ const btn=([k,n])=>`<button role="tab" aria-selected="${UI.tab===k}" data-k="${k}" draggable="true" title="Drag to reorder">${n}</button>`;
+ $('#tabs').innerHTML=UI.tier===3?'':TAB_GROUPS.map(([g,ks])=>{const ts=tabs.filter(t=>ks.includes(t[0]));return ts.length?`<div class="tab-group" role="presentation"><div class="tab-head">${g}</div><div class="tab-row">${ts.map(btn).join('')}</div></div>`:''}).join('');
  let dragK=null;$('#tabs').querySelectorAll('button').forEach(b=>{
   b.ondragstart=e=>{dragK=b.dataset.k;b.classList.add('drag');e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',dragK)};
   b.ondragend=()=>{b.classList.remove('drag');$('#tabs').querySelectorAll('.over').forEach(x=>x.classList.remove('over'))};
@@ -1134,7 +1340,7 @@ function renderTagging(R){
  const px=pixelTable(R),ut=utmTable(R),T=trafficOf(),wb=workback(),gb=geoBudget(R);
  const inp=(k,lab,ph)=>`<label class="f">${lab}<input type="text" class="tr-in" data-k="${k}" value="${esc(T[k])}" placeholder="${esc(ph||'')}"></label>`;
  const sel=(k,lab,opts)=>`<label class="f">${lab}<select class="tr-in" data-k="${k}">${opts.map(([v,n])=>`<option value="${v}" ${T[k]===v?'selected':''}>${n}</option>`).join('')}</select></label>`;
- return `<div class="panel" style="display:flex;flex-direction:column;gap:14px"><div class="toolbar" style="margin:0"><div><div class="eyebrow">Spec &amp; trafficking sheet for agency</div><h2 style="font-size:18px">Agency trafficking sheet: every line</h2><div class="note">One row per media line, laid out the way the agency builds it: <strong>campaign → ad set → ads</strong>. It names each campaign and ad with a standard taxonomy, gives the objective, budget (total and daily), audience and exclusions, conversion event, lead form, CTA, files, copy and tracked URL. The grey columns at the end are for the agency to fill in (campaign ID, ad IDs, audience size) and for your QA.</div></div>
+ return `<div class="panel" style="display:flex;flex-direction:column;gap:14px"><div class="toolbar" style="margin:0"><div><div class="eyebrow">Spec sheet &amp; tagging for agency</div><h2 style="font-size:18px">Agency trafficking sheet: every line</h2><div class="note">One row per media line, laid out the way the agency builds it: <strong>campaign → ad set → ads</strong>. It names each campaign and ad with a standard taxonomy, gives the objective, budget (total and daily), audience and exclusions, conversion event, lead form, CTA, files, copy and tracked URL. The grey columns at the end are for the agency to fill in (campaign ID, ad IDs, audience size) and for your QA.</div></div>
    <label class="f" style="min-width:260px">Landing page URL<input type="text" id="in-landing" value="${esc(S.landing)}"></label></div>
   <div class="tr-set"><div class="eyebrow" style="grid-column:1/-1">Trafficking settings (fill once, used in every name)</div>
    ${inp('bu','Business unit code','e.g. grow')}${inp('region','Region code','e.g. amer, emea, global')}${inp('cc','Cost center','e.g. 4410')}${inp('crm','CRM campaign ID','e.g. 701Ux000…')}${inp('crmName','CRM campaign name','')}
@@ -1336,7 +1542,7 @@ function renderTests(R){
    <div class="tscroll"><table><thead><tr>${R.months.map(m=>`<th class="n">${monthLabel(m)}</th>`).join('')}</tr></thead><tbody>
    <tr>${R.months.map(m=>`<td class="n sub2">${rs.includes(m)?'Refresh R'+(rs.indexOf(m)+1):''}</td>`).join('')}</tr>
    <tr>${R.months.map(m=>`<td class="n">${(ro[m]||[]).map(id=>`<span class="chip cv">${id}</span>`).join(' ')}</td>`).join('')}</tr></tbody></table></div></div>
-  <div><h3 style="font-size:14px;margin-bottom:6px">In the trafficking sheet</h3><div class="note" style="margin-bottom:8px">Each test cell becomes its own ad, so results split cleanly in the platform and in GA4. The Spec &amp; Trafficking Sheet tab lists the cells on every line in a test.</div>
+  <div><h3 style="font-size:14px;margin-bottom:6px">In the tagging sheet</h3><div class="note" style="margin-bottom:8px">Each test cell becomes its own ad, so results split cleanly in the platform and in GA4. The Spec Sheet &amp; Tagging tab lists the cells on every line in a test.</div>
    ${exRow?`<div class="m" style="background:var(--sunk);border-radius:10px;padding:10px 12px;font-size:11px;line-height:1.6;word-break:break-all"><span class="sub2">Ad name</span> ${esc(exRow.adname)}_<strong style="color:var(--rose)">${ex.id}-B</strong><br><span class="sub2">utm_content</span> ${esc(exRow.cont)}_<strong style="color:var(--rose)">${ex.id.toLowerCase()}-b</strong></div>`:''}</div></div>
  <div><h3 style="font-size:14px;margin-bottom:8px">Learning agenda</h3><div class="cols" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
   ${TP.agenda.map(a=>`<div style="border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px"><span class="eyebrow">${esc(a.when)} · ${a.ids.join(', ')}</span><span style="font-family:var(--f-display);font-size:16px;font-weight:600">${esc(a.q)}</span></div>`).join('')}
@@ -1383,33 +1589,34 @@ function renderAssump(R){
  const tb=assumptionTable(R),view=UI.bdView||'pl';let grp=UI.bdGroup||'none';if(grp==='market'&&view==='pl')grp='none';
  const cats=[...new Set([...CAT_SUGGEST,...Object.values(S.cats||{}).filter(Boolean)])];
  const plan=+S.budgets[TIERS[R.tier]]||0,lb=bomTable(R).rows;
- const rowsPl=tb.rows.map(r=>{const p=PLMAP[r._id];return {...r,_g:{channel:r.channel,stage:r.stage,ini:iniOf(p).name,buy:r.buy,cat:catOf(r._id)||'Uncategorized'}}});
- const rowsLn=R.lines.map((l,i)=>({...lb[i],_id:l.p.id,rate:rateOf(l.p),qty:Math.round(l.qty),_g:{channel:l.channel,market:l.market,stage:l.stage,ini:l.ini.name,buy:l.p.buy,cat:catOf(l.p.id)||'Uncategorized'}}));
+ const rowsPl=tb.rows.map(r=>{const p=PLMAP[r._id];return {...r,_g:{channel:r.channel,stage:r.stage,ini:iniOf(p).name,buy:r.buy,cat:catOf(r._id)||'Uncategorized',role:ROLENAME[roleOf(p)]}}});
+ const rowsLn=R.lines.map((l,i)=>({...lb[i],_id:l.p.id,rate:rateOf(l.p),qty:Math.round(l.qty),_g:{channel:l.channel,market:l.market,stage:l.stage,ini:l.ini.name,buy:l.p.buy,cat:catOf(l.p.id)||'Uncategorized',role:ROLENAME[roleOf(l.p)]}}));
  const rows=view==='pl'?rowsPl:rowsLn;
  const groups=grp==='none'?[['',rows]]:Object.entries(rows.reduce((o,r)=>{(o[r._g[grp]]=o[r._g[grp]]||[]).push(r);return o},{})).sort((a,b)=>a[0]==='Uncategorized'?1:b[0]==='Uncategorized'?-1:sum(b[1].map(r=>r.budget))-sum(a[1].map(r=>r.budget)));
  const catCell=pid=>`<td><input class="cat-in" list="cat-list" data-pid="${pid}" value="${esc(catOf(pid))}" placeholder="Add category" aria-label="Category"></td>`;
+ const roleCell=pid=>`<td>${roleSelect(pid)}</td>`;
  const rateCell=r=>`<td class="n"><input class="rate" type="number" step="any" min="0" data-rt="${r._id}" value="${r.rate}" aria-label="Rate for ${esc(r.placement)}"></td>`;
- const plHead=`<th>Channel</th><th>Placement</th><th>Category</th><th>Audience</th><th>Targeting</th><th>Buy</th><th class="n">Rate</th><th class="n">Benchmark</th><th class="n">Budget</th><th class="n">Est. delivery</th><th class="n">Proj. impressions</th><th class="n">Proj. clicks</th><th class="n">Proj. LP visits</th><th class="n">Proj. video views</th><th class="n">Proj. leads</th><th class="n">Cost per lead</th><th>Markets</th><th>Stage</th><th>KPI</th>`;
- const lnHead=`<th>Line</th><th>Channel</th><th>Placement</th><th>Category</th><th>Market</th><th>Lang</th><th>Audience</th><th>Stage</th><th>Buy</th><th class="n">Rate</th><th class="n">Budget</th><th class="n">Est. delivery</th><th>Flight</th><th>Initiative</th><th>KPI</th><th>BOM items</th>`;
- const plRow=r=>`<tr><td>${esc(r.channel)}</td><td style="min-width:200px">${esc(r.placement)}</td>${catCell(r._id)}${(()=>{const p=PLMAP[r._id],c=CH.find(x=>x.pl.some(q=>q.id===r._id)),pp=c.pl.find(q=>q.id===r._id);return `<td style="min-width:200px">${audSelect(c,pp)}</td><td style="min-width:150px">${tgtSelect(c,pp)}</td>`})()}<td class="m">${esc(r.buy)}${r.buy==='Flat'?' / '+esc((PLMAP[r._id].unit||'unit').replace(/s$/,'')):''}</td>
+ const plHead=`<th>Channel</th><th>Placement</th><th>Category</th><th title="Brand placements build awareness; Demand placements drive leads. Feeds Media Mix Outcomes.">Role</th><th>Audience</th><th>Targeting</th><th>Buy</th><th class="n">Rate</th><th class="n">Benchmark</th><th class="n">Budget</th><th class="n">Est. delivery</th><th class="n">Proj. impressions</th><th class="n">Proj. clicks</th><th class="n">Proj. LP visits</th><th class="n">Proj. video views</th><th class="n">Proj. leads</th><th class="n">Cost per lead</th><th>Markets</th><th>Stage</th><th>KPI</th>`;
+ const lnHead=`<th>Line</th><th>Channel</th><th>Placement</th><th>Category</th><th>Role</th><th>Market</th><th>Lang</th><th>Audience</th><th>Stage</th><th>Buy</th><th class="n">Rate</th><th class="n">Budget</th><th class="n">Est. delivery</th><th>Flight</th><th>Initiative</th><th>KPI</th><th>BOM items</th>`;
+ const plRow=r=>`<tr><td>${esc(r.channel)}</td><td style="min-width:200px">${esc(r.placement)}</td>${catCell(r._id)}${roleCell(r._id)}${(()=>{const p=PLMAP[r._id],c=CH.find(x=>x.pl.some(q=>q.id===r._id)),pp=c.pl.find(q=>q.id===r._id);return `<td style="min-width:200px">${audSelect(c,pp)}</td><td style="min-width:150px">${tgtSelect(c,pp)}</td>`})()}<td class="m">${esc(r.buy)}${r.buy==='Flat'?' / '+esc((PLMAP[r._id].unit||'unit').replace(/s$/,'')):''}</td>
   ${rateCell(r)}<td class="n">${rateFmt(r.bench,r.buy)}</td><td class="n"><input class="rate bud${plPinOf(r._id,R.tier)!=null?' pinned':''}" type="number" step="100" min="0" id="pb-${r._id}" value="${Math.round(r.budget)}" title="Type a budget for this placement" aria-label="Budget for ${esc(r.placement)}"></td><td class="n">${compact(r.qty)} <span class="sub2">${esc(r.qu)}</span></td>${['imp','clk','lpv','views','leads'].map(k=>`<td class="n">${r[k]?compact(r[k]):'<span class="sub2">—</span>'}</td>`).join('')}<td class="n">${r.cpl?money2(r.cpl):'<span class="sub2">—</span>'}</td><td class="sub2" style="min-width:140px">${esc(r.mk)}</td><td>${stageChip(r.stage)}</td><td class="sub2" style="min-width:160px">${esc(r.kpi)}</td></tr>`;
- const lnRow=r=>`<tr><td class="m"><strong>${r.id}</strong></td><td style="white-space:nowrap">${esc(r.channel)}</td><td style="min-width:200px">${esc(r.placement)}<div class="sub2">${esc(r.publisher)}</div></td>${catCell(r._id)}<td>${esc(r.market)}</td><td class="m">${esc(r.lang)}</td><td class="sub2" style="min-width:160px">${esc(r.aud||'')}</td><td>${stageChip(r.stage)}</td><td class="m">${esc(r.buy)}</td>
+ const lnRow=r=>`<tr><td class="m"><strong>${r.id}</strong></td><td style="white-space:nowrap">${esc(r.channel)}</td><td style="min-width:200px">${esc(r.placement)}<div class="sub2">${esc(r.publisher)}</div></td>${catCell(r._id)}<td>${ROLENAME[roleOf(PLMAP[r._id])]}</td><td>${esc(r.market)}</td><td class="m">${esc(r.lang)}</td><td class="sub2" style="min-width:160px">${esc(r.aud||'')}</td><td>${stageChip(r.stage)}</td><td class="m">${esc(r.buy)}</td>
   ${rateCell(r)}<td class="n">${money(r.budget)}</td><td class="n">${compact(r.qty)} <span class="sub2">${esc(r.qu)}</span></td><td class="sub2" style="min-width:140px">${esc(r.flight)}</td><td class="sub2">${esc(r.ini)}</td><td class="sub2" style="min-width:160px">${esc(r.kpi)}</td><td class="m">${esc(r.bomIds)}</td></tr>`;
- const subtotal=(name,rs)=>view==='pl'?`<tr class="grp"><td colspan="8">${esc(name)} <span class="sub2" style="font-weight:400">· ${rs.length} placements</span></td><td class="n">${money(sum(rs.map(r=>r.budget)))}</td><td></td>${['imp','clk','lpv','views','leads'].map(k=>`<td class="n">${compact(sum(rs.map(r=>r[k]||0)))}</td>`).join('')}<td colspan="4"></td></tr>`
-  :`<tr class="grp"><td colspan="10">${esc(name)} <span class="sub2" style="font-weight:400">· ${rs.length} lines</span></td><td class="n">${money(sum(rs.map(r=>r.budget)))}</td><td colspan="5"></td></tr>`;
+ const subtotal=(name,rs)=>view==='pl'?`<tr class="grp"><td colspan="9">${esc(name)} <span class="sub2" style="font-weight:400">· ${rs.length} placements</span></td><td class="n">${money(sum(rs.map(r=>r.budget)))}</td><td></td>${['imp','clk','lpv','views','leads'].map(k=>`<td class="n">${compact(sum(rs.map(r=>r[k]||0)))}</td>`).join('')}<td colspan="4"></td></tr>`
+  :`<tr class="grp"><td colspan="11">${esc(name)} <span class="sub2" style="font-weight:400">· ${rs.length} lines</span></td><td class="n">${money(sum(rs.map(r=>r.budget)))}</td><td colspan="5"></td></tr>`;
  const total=sum(rows.map(r=>r.budget)),ok=Math.abs(total-plan)<1;
  const opt=(v,n,cur)=>`<option value="${v}" ${cur===v?'selected':''}>${n}</option>`;
- return `<div class="toolbar"><span class="note">Every buy in the ${esc(TIERNAME[R.tier])} version, with the line items folded in. <strong>By placement</strong> sums each buy across markets: click a budget to type your own (that placement gets exactly that amount, its channel total moves with it, and the rest rebalances to stay on ${money(plan)}). <strong>By line</strong> shows every placement × market line the agency books. Edit a rate to replace the benchmark with your rate card (it applies to all versions). Type a category on any row, then group by it.</span>
+ return `<div class="toolbar"><span class="note">Every buy in the ${esc(TIERNAME[R.tier])} version, with the line items folded in. <strong>By placement</strong> sums each buy across markets: click a budget to type your own (that placement gets exactly that amount, its channel total moves with it, and the rest rebalances to stay on ${money(plan)}). <strong>By line</strong> shows every placement × market line the agency books. Edit a rate to replace the benchmark with your rate card (it applies to all versions). Type a category on any row, then group by it. <strong>Role</strong> marks a placement Brand or Demand for Media Mix Outcomes (Awareness placements start as Brand).</span>
   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="rates-reset">Reset rates</button><button class="btn sm" id="pb-reset" ${Object.keys(S.plPin?.[TIERS[R.tier]]||{}).length?'':'disabled'}>Clear typed budgets</button></div></div>
  <div class="toolbar"><div class="left" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
   <div style="display:flex;gap:6px" role="group" aria-label="View"><button class="btn sm ${view==='pl'?'primary':''}" data-bdview="pl">By placement</button><button class="btn sm ${view==='line'?'primary':''}" data-bdview="line">By line (each market)</button></div>
-  <label class="note" style="display:flex;gap:6px;align-items:center">Group by <select id="bd-grp">${opt('none','No grouping',grp)}${opt('cat','My categories',grp)}${opt('channel','Channel',grp)}${view==='line'?opt('market','Market',grp):''}${opt('stage','Funnel stage',grp)}${opt('ini','Initiative',grp)}${opt('buy','Buy type',grp)}</select></label></div>
+  <label class="note" style="display:flex;gap:6px;align-items:center">Group by <select id="bd-grp">${opt('none','No grouping',grp)}${opt('cat','My categories',grp)}${opt('channel','Channel',grp)}${view==='line'?opt('market','Market',grp):''}${opt('stage','Funnel stage',grp)}${opt('ini','Initiative',grp)}${opt('buy','Buy type',grp)}${opt('role','Brand / demand',grp)}</select></label></div>
   <span class="chip ${ok?'aw':'flag'}">Total ${money(total)} ${ok?'matches':'vs'} the ${money(plan)} budget</span></div>
  <datalist id="cat-list">${cats.map(c=>`<option value="${esc(c)}">`).join('')}</datalist>
  <div class="tscroll"><table><thead><tr>${view==='pl'?plHead:lnHead}</tr></thead><tbody>
  ${groups.map(([g,rs])=>(g?subtotal(g,rs):'')+rs.map(view==='pl'?plRow:lnRow).join('')).join('')}
- ${view==='pl'?`<tr class="tot"><td>Total</td><td>${rows.length} placements</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="n">${money(total)}</td><td></td>${['imp','clk','lpv','views','leads'].map(k=>`<td class="n">${compact(sum(rows.map(r=>r[k])))}</td>`).join('')}<td class="n">${(()=>{const L=sum(rows.map(r=>r.leads));return L?money2(total/L):'—'})()}</td><td></td><td></td><td></td></tr>`
-  :`<tr class="tot"><td>Total</td><td colspan="9">${rows.length} lines</td><td class="n">${money(total)}</td><td colspan="5"></td></tr>`}
+ ${view==='pl'?`<tr class="tot"><td>Total</td><td>${rows.length} placements</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="n">${money(total)}</td><td></td>${['imp','clk','lpv','views','leads'].map(k=>`<td class="n">${compact(sum(rows.map(r=>r[k])))}</td>`).join('')}<td class="n">${(()=>{const L=sum(rows.map(r=>r.leads));return L?money2(total/L):'—'})()}</td><td></td><td></td><td></td></tr>`
+  :`<tr class="tot"><td>Total</td><td colspan="10">${rows.length} lines</td><td class="n">${money(total)}</td><td colspan="5"></td></tr>`}
  </tbody></table></div>`;
 }
 function renderCompare(){
@@ -1460,7 +1667,7 @@ function _renderOut(){
  $('#x-csv').disabled=false;
  const R=compute(UI.tier);syncBudgetFields(R);
  if(!TABS.some(t=>t[0]===UI.tab))UI.tab='summary';
- v.innerHTML={assets:renderAssets,growth:renderGrowth,summary:renderSummary,bom:renderMVP,copy:renderAdCopy,lines:renderBOM,spec:renderSpec,flight:renderFlight,assump:renderAssump,tests:renderTests,tagging:renderTagging}[UI.tab](R);
+ v.innerHTML={...(typeof BG_RENDER!=='undefined'?BG_RENDER:{}),assets:renderAssets,mix:renderMix,growth:R=>(typeof bgGrowthSection!=='undefined'?bgGrowthSection(R):'')+renderGrowth(R),summary:renderSummary,bom:renderMVP,copy:renderAdCopy,lines:renderBOM,spec:renderSpec,flight:renderFlight,assump:renderAssump,tests:renderTests,tagging:renderTagging}[UI.tab](R);
  const tps=$('#tp-share');if(tps)tps.onchange=()=>{S.testShare=S.testShare||{};S.testShare[TIERS[UI.tier]]=Math.max(0,+tps.value||0);changed()};
  const tpl=$('#tp-lift');if(tpl)tpl.onchange=()=>{S.testLift=+tpl.value;changed()};
  if(UI.tab==='tests')wireTestBuilder();
@@ -1474,6 +1681,10 @@ function _renderOut(){
  v.querySelectorAll('.cp-reset').forEach(b=>b.onclick=()=>{if(S.copyEdits)delete S.copyEdits[b.dataset.lk];save();renderOut()});
  const g=$('#grp');if(g)g.onchange=()=>{UI.group=g.value;save();renderOut()};
  if(UI.tab==='assets')wireAssets();
+ if(typeof BG_WIRE!=='undefined'&&BG_WIRE[UI.tab])BG_WIRE[UI.tab](R);
+ if(typeof bgSyncSplit!=='undefined')bgSyncSplit(R);
+ if(UI.tab==='mix')wireMix(R);
+ v.querySelectorAll('.role-in').forEach(el=>el.onchange=()=>{S.plRole=S.plRole||{};const p=PLMAP[el.dataset.pid],def=p.stage==='Awareness'?'brand':'demand';if(el.value===def)delete S.plRole[p.id];else S.plRole[p.id]=el.value;if(UI.mixShare)delete UI.mixShare[TIERS[UI.tier]];changed()});
  if(UI.tab==='assump'){v.querySelectorAll('.aud-in').forEach(el=>el.onchange=()=>{S.plAud=S.plAud||{};if(el.value)S.plAud[el.dataset.pid]=el.value;else delete S.plAud[el.dataset.pid];changed()});
   v.querySelectorAll('.tgt-in').forEach(el=>el.onchange=()=>{S.plTgt=S.plTgt||{};S.plTgt[el.dataset.pid]=el.value;changed()});v.querySelectorAll('input[data-rt]').forEach(el=>el.onchange=()=>{S.rates[el.dataset.rt]=el.value===''?null:+el.value;changed()});
   v.querySelectorAll('[data-bdview]').forEach(b=>b.onclick=()=>{UI.bdView=b.dataset.bdview;save();renderOut()});
@@ -1504,9 +1715,9 @@ function workbookFor(tiers){
   addSheet(wb,p+'Ad Copy',adCopyAOA(R),[18,16,26,8,24,80,10,8,8,60]);
   addSheet(wb,p+'Line Items',tableToAOA(bomTable(R),['budget']),[6,9,30,40,13,16,18,36,30,14,8,40,50,32,50,8,16,11,12,11,30,30,16,11,16]);
   addSheet(wb,p+'Creative Spec Sheet',tableToAOA(specTable(R)),[20,30,40,50,24,16,24,60,40,50,24,12,10,10]);
-  addSheet(wb,p+'Flighting & Outcomes',flightAOA(R),[30]);addSheet(wb,p+'Growth Plan',growthAOA(R),[34,16]);if((S.assets||[]).length)addSheet(wb,p+'Assets',assetsAOA(),[30,40,40,16,14,14,20,24]);
+  addSheet(wb,p+'Flighting & Outcomes',flightAOA(R),[30]);addSheet(wb,p+'Growth Plan',growthAOA(R),[34,16]);addSheet(wb,p+'Media Mix Outcomes',mixAOA(R),[40,16,16,16,12,12,12,12,12,12]);if((S.assets||[]).length)addSheet(wb,p+'Assets',assetsAOA(),[30,40,40,16,14,14,20,24]);
   addSheet(wb,p+'Test Plan',testAOA(R),[6,14,60,16,36,16,18,40,10,18,16,22,10,10,14,18,60,12,11,50,30]);
-  addSheet(wb,p+'Buy Details',tableToAOA(assumptionTable(R),['budget','n','imp','clk','lpv','views','leads']),[24,44,10,8,10,12,12,12,12,40,6,10,13,40]);
+  addSheet(wb,p+'Buy Details',tableToAOA(assumptionTable(R),['budget','n','imp','clk','lpv','views','leads']),[24,44,8,10,8,10,12,12,12,12,40,6,10,13,40]);
   addSheet(wb,p+'Agency Tags - Pixels',tableToAOA(pixelTable(R)),[24,50,40,44,44,30,6]);
   addSheet(wb,p+'Workback',[['When','Due','Task','Owner'],...workback().map(w=>[w.days,w.due,w.task,w.owner])],[8,12,60,10]);
   {const g=geoBudget(R);addSheet(wb,p+'Budget by Market',[['Market','Channels','Lines','Budget'],...g.rows.map(r=>[r.market,r.ch,r.lines,Math.round(r.budget)]),['Grand total','',R.lines.length,Math.round(g.total)]],[24,60,8,14])}
@@ -1516,7 +1727,11 @@ function workbookFor(tiers){
 }
 function slug(){return (S.name||'media-plan').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,60)||'media-plan'}
 window.__exportWorkbookB64=(all)=>XLSX.write(workbookFor(all?[0,1,2]:[UI.tier===3?1:UI.tier]),{type:'base64',bookType:'xlsx'});
-function currentTable(){const R=compute(UI.tier);return {summary:()=>({cols:[['A','a'],['B','b'],['C','c']],rows:summaryAOA(R).map(r=>({a:r[0],b:r[1],c:r[2]})),raw:true}),bom:()=>mvpTable(R),lines:()=>bomTable(R),tagging:()=>utmTable(R),spec:()=>specTable(R),flight:()=>{const a=flightAOA(R),w=Math.max(...a.map(r=>r.length));return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}},assump:()=>(UI.bdView==='line'?bomTable(R):assumptionTable(R)),assets:()=>{const a=assetsAOA(),w=a[0].length;return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}},growth:()=>{const a=growthAOA(R),w=Math.max(...a.map(r=>r.length));return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}},tests:()=>{const a=testAOA(R),w=Math.max(...a.map(r=>r.length));return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}},copy:()=>{const a=adCopyAOA(R),w=Math.max(...a.map(r=>r.length));return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}}}[UI.tab]()}
+function currentTable(){const R=compute(UI.tier);return {summary:()=>({cols:[['A','a'],['B','b'],['C','c']],rows:summaryAOA(R).map(r=>({a:r[0],b:r[1],c:r[2]})),raw:true}),bom:()=>mvpTable(R),lines:()=>bomTable(R),tagging:()=>utmTable(R),spec:()=>specTable(R),flight:()=>{const a=flightAOA(R),w=Math.max(...a.map(r=>r.length));return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}},assump:()=>(UI.bdView==='line'?bomTable(R):assumptionTable(R)),assets:()=>{const a=assetsAOA(),w=a[0].length;return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}},mix:()=>{const a=mixAOA(R),w=Math.max(...a.map(r=>r.length));return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}},growth:()=>{const a=growthAOA(R),w=Math.max(...a.map(r=>r.length));return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}},tests:()=>{const a=testAOA(R),w=Math.max(...a.map(r=>r.length));return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}},copy:()=>{const a=adCopyAOA(R),w=Math.max(...a.map(r=>r.length));return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}}}[UI.tab]?.()||viewAOA()}
+// Tabs without their own export: every table on the tab, as shown
+function viewAOA(){const a=[];document.querySelectorAll('#view h2, #view h3, #view table').forEach(el=>{if(el.tagName!=='TABLE'){a.push([el.innerText.trim()]);return}
+ el.querySelectorAll('tr').forEach(tr=>a.push([...tr.children].map(td=>{const i=td.querySelector('input');return (i?i.value:td.innerText).replace(/\s+/g,' ').trim()})));a.push([])});
+ const w=Math.max(1,...a.map(r=>r.length));return {cols:Array.from({length:w},(_,i)=>['',i]),rows:a.map(r=>Object.fromEntries(r.map((v,i)=>[i,v]))),aoa:a}}
 function toDelim(tb,d){const q=v=>{v=v==null?'':String(v);return d===','&&/[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v.replace(/\t|\n/g,' ')};
  const rows=tb.aoa?tb.aoa:tb.raw?tb.rows.map(r=>[r.a,r.b,r.c]):[tb.cols.map(c=>c[0]),...tb.rows.map(r=>tb.cols.map(([,k])=>r[k]))];return rows.map(r=>r.map(q).join(d)).join('\n')}
 function setStatus(sel,msg,err){const el=$(sel);el.textContent=msg;el.classList.toggle('err',!!err)}
@@ -1559,7 +1774,7 @@ $('#in-file').onchange=async e=>{const f=e.target.files[0];if(!f)return;setStatu
  catch(err){runBusy(false);setStatus('#extract-status','Could not read that file: '+err.message,true)}e.target.value=''};
 
 const MKT_RULES=[['NA',/north america|\bus\b|\busa\b|united states|canada/i,'North America','EN'],['EMEA',/emea|europe|\buk\b|turkey|germany|france|middle east/i,'EMEA','EN'],['CN',/china|chinese|mainland/i,'China','ZH'],['JP',/japan/i,'Japan','JA'],['KR',/korea/i,'Korea','KO'],['SEA',/southeast asia|\bsea\b|vietnam|indonesia|thailand|philippines|singapore/i,'Southeast Asia','EN'],['LATAM',/latam|latin america|brazil|mexico/i,'LATAM','ES']];
-const CH_RULES={linkedin:/linkedin/i,meta:/\bmeta\b|facebook|instagram/i,google:/google search|paid search|\bsem\b|search ads|llm search|organic search/i,x:/\bx \(twitter\)|twitter|\bx\b/i,reddit:/reddit/i,youtube:/youtube|video series|video testimonial/i,trade:/dark reading|cso online|securityweek|techtarget|trade press|industry press/i,creators:/podcast|newsletter|influencer|creator/i,abm:/abm|account[- ]based|target account/i,events:/\brsac\b|black hat|conference|summit|event/i,wechat:/wechat|china/i,baidu:/baidu|china/i,naver:/naver|korea/i};
+const CH_RULES={linkedin:/linkedin/i,meta:/\bmeta\b|facebook|instagram/i,google:/google search|paid search|\bsem\b|search ads|llm search|organic search/i,x:/\bx \(twitter\)|twitter|\bx\b/i,reddit:/reddit/i,youtube:/youtube|video series|video testimonial/i,ctv:/connected tv|\bctv\b|\bott\b|streaming tv|programmatic/i,trade:/techtarget|the register|computerweekly|dark reading|network world|cfo dive|cfo brew|accounting today|finextra|trade press|industry press|finance trades|it trades|security trades/i,creators:/podcast|newsletter|influencer|creator/i,abm:/abm|account[- ]based|target account/i,events:/\bgdc\b|chinajoy|conference|summit|event/i,wechat:/wechat|china/i,baidu:/baidu|china/i,naver:/naver|korea/i};
 function applyExtract(x){
  const changes=[];
  if(x.campaignName){S.name=x.campaignName;changes.push('name')}
@@ -1610,7 +1825,7 @@ function scanMoments(text,yr){const out=[];
    const mi=mm?['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'].indexOf(mm[1].toLowerCase().slice(0,3)):(+q[1]-1)*3;
    seg=seg.split(/\.\s+(?=[A-Z])/)[0];const name=seg.replace(/\b(Q[1-4](\s*\/\s*Q[1-4])?|H[12])\b[\s\/-]*/gi,'').replace(new RegExp(MONTHS_RE.source+'(\\s*\\/\\s*'+MONTHS_RE.source.slice(2,-2)+'[a-z]*)?','gi'),'').replace(/\b20\d\d\b/g,'').replace(/^[\s:,–—-]+|[\s:,–—-]+$/g,'').replace(/\s{2,}/g,' ').trim();
    if(name.length<3)return;
-   out.push({name:name.slice(0,90),month:`${y}-${String(mi+1).padStart(2,'0')}`,type:/summit|conference|expo|rsac|event|meetup|webinar|show\b/i.test(name)?'event':/report|video|newsletter|series|guide|ebook|whitepaper|content/i.test(name)?'content':'launch',initiative:0})})});
+   out.push({name:name.slice(0,90),month:`${y}-${String(mi+1).padStart(2,'0')}`,type:/summit|conference|expo|gdc|event|meetup|webinar|show\b/i.test(name)?'event':/report|video|newsletter|series|guide|ebook|whitepaper|content/i.test(name)?'content':'launch',initiative:0})})});
  return out.slice(0,24)}
 function localExtract(text){
  const x={markets:[],channels:[]};
@@ -1626,7 +1841,7 @@ let SAMPLE=null;
 const PDFJS_WORKER='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 /* ==================== HERO PEP TALK ==================== */
-const CHEERS=['You make work suck less. 🙌','Your media plan is so balanced it does yoga. 🧘','Somewhere a CFO just smiled at your CPL. 😌','You + this BOM = the agency’s favorite brief. 💌','Spreadsheets fear you. Respectfully. 📊','Your UTMs are cleaner than my kitchen. 🧼','Reminder: you are more than your CTR. But also, nice CTR. ✨','That budget isn’t going to allocate itself. Oh wait, it is. 🤖','Creative due dates? You eat those for breakfast. 🥞','You put the “fun” in funnel. 🎢','Legend has it your media plans never need a v2. 🏆','Coffee count: high. Brilliance: higher. ☕','Plot twist: the algorithm is a fan of yours. 💅','You are the A in every A/B test. 🅰️','Go ahead, flex that blended CPM. 💪'];
+const CHEERS=['You make work suck less. 🙌','Your media plan is so balanced it does yoga. 🧘','Somewhere a CIO just smiled at your CPL. 😌','You + this BOM = the agency’s favorite brief. 💌','Spreadsheets fear you. Respectfully. 📊','Your UTMs are cleaner than my kitchen. 🧼','Reminder: you are more than your CTR. But also, nice CTR. ✨','That budget isn’t going to allocate itself. Oh wait, it is. 🤖','Creative due dates? You eat those for breakfast. 🥞','You put the “fun” in funnel. 🎢','Legend has it your media plans never need a v2. 🏆','Coffee count: high. Brilliance: higher. ☕','Plot twist: the algorithm is a fan of yours. 💅','You are the A in every A/B test. 🅰️','Go ahead, flex that blended CPM. 💪'];
 let cheerI=Math.floor(Math.random()*CHEERS.length);
 function showCheer(t){const el=$('#cheer-t');if(el)el.textContent=t}
 async function newCheer(useAI){
